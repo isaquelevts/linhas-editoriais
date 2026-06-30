@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arthros Medicina — Linha Editorial Maio 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'DM Sans',sans-serif; background:#F4F7FB; color:#0D1B2A; overflow-x:hidden; }
+:root {
+  --primary:#0D47A1; --primary-light:#1976D2; --primary-medium:#1565C0; --primary-pale:#BBDEFB; --primary-soft:#E3F2FD;
+  --secondary:#2E7D32; --secondary-light:#4CAF50;
+  --white:#FFFFFF; --dark:#0D1B2A; --gray:#6B7A8D; --gray-light:#F4F7FB;
+  --reel:#E65100; --reel-bg:#FFF3E0; --reel-border:#FFB74D;
+}
+
+/* NAV */
+nav { position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(255,255,255,0.94); backdrop-filter:blur(14px); border-bottom:1px solid rgba(13,71,161,0.15); padding:0 2rem; display:flex; align-items:center; justify-content:space-between; height:56px; }
+.nav-logo { font-family:'Playfair Display',serif; font-size:16px; color:var(--primary); font-weight:700; }
+.nav-right { display:flex; align-items:center; gap:1.5rem; }
+.nav-tag { font-size:11px; color:var(--gray); letter-spacing:1px; text-transform:uppercase; }
+.nav-month { font-size:12px; font-weight:500; color:var(--primary); background:var(--primary-soft); padding:4px 12px; border-radius:20px; }
+.progress-bar { position:fixed; top:56px; left:0; height:2px; background:var(--primary); transition:width 0.2s; z-index:99; }
+
+/* HERO */
+.hero { min-height:100vh; background:var(--dark); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:80px 2rem 4rem; position:relative; overflow:hidden; }
+.hero::before { content:''; position:absolute; top:-200px; left:50%; transform:translateX(-50%); width:800px; height:800px; background:radial-gradient(circle,rgba(13,71,161,0.32) 0%,transparent 70%); pointer-events:none; }
+.hero::after { content:''; position:absolute; bottom:-100px; right:-80px; width:400px; height:400px; background:radial-gradient(circle,rgba(25,118,210,0.15) 0%,transparent 70%); pointer-events:none; }
+.hero-tag { display:inline-block; background:rgba(13,71,161,0.25); color:var(--primary-light); font-size:11px; letter-spacing:2.5px; text-transform:uppercase; padding:6px 18px; border-radius:20px; border:1px solid rgba(25,118,210,0.35); margin-bottom:2rem; animation:fadeUp 0.7s ease both; }
+.hero-title { font-family:'Playfair Display',serif; font-size:clamp(42px,8vw,86px); color:var(--white); line-height:1.0; letter-spacing:-2px; margin-bottom:1.25rem; animation:fadeUp 0.7s 0.12s ease both; }
+.hero-title span { color:var(--primary-light); }
+.hero-sub { font-size:15px; color:rgba(255,255,255,0.45); max-width:460px; margin:0 auto 3rem; line-height:1.7; font-weight:300; animation:fadeUp 0.7s 0.24s ease both; }
+.hero-stats { display:inline-flex; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:14px; overflow:hidden; animation:fadeUp 0.7s 0.36s ease both; }
+.hero-stat { padding:1.25rem 2rem; text-align:center; border-right:1px solid rgba(255,255,255,0.08); }
+.hero-stat:last-child { border-right:none; }
+.hero-stat-val { font-family:'Playfair Display',serif; font-size:30px; color:var(--white); display:block; }
+.hero-stat-lbl { font-size:10px; color:rgba(255,255,255,0.35); letter-spacing:1.5px; text-transform:uppercase; margin-top:2px; }
+.scroll-hint { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:6px; animation:fadeUp 0.7s 0.5s ease both; }
+.scroll-hint span { font-size:9px; color:rgba(255,255,255,0.25); letter-spacing:2px; text-transform:uppercase; }
+.arrow-down { width:18px; height:18px; border-right:1.5px solid rgba(255,255,255,0.25); border-bottom:1.5px solid rgba(255,255,255,0.25); transform:rotate(45deg); animation:bounce 1.6s infinite; }
+
+/* SECTIONS */
+.section { padding:80px 2rem; }
+.section-inner { max-width:1000px; margin:0 auto; }
+.section-label { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--primary); font-weight:500; margin-bottom:0.6rem; display:flex; align-items:center; gap:10px; }
+.section-label::after { content:''; flex:1; height:1px; background:var(--primary-pale); }
+.section-title { font-family:'Playfair Display',serif; font-size:clamp(28px,4vw,46px); color:var(--dark); line-height:1.1; letter-spacing:-0.5px; margin-bottom:2.5rem; }
+.section-title em { font-style:italic; color:var(--primary); }
+
+/* BADGES */
+.tl-badge { display:inline-flex; align-items:center; gap:5px; font-size:10px; font-weight:500; padding:3px 10px; border-radius:20px; margin-bottom:5px; text-transform:uppercase; letter-spacing:0.5px; }
+.badge-post { background:var(--primary-soft); color:var(--primary); }
+.badge-reel { background:var(--reel-bg); color:var(--reel); border:1px solid var(--reel-border); }
+.badge-data { background:#FFF8E6; color:#92600A; border:1px solid #FFE4A0; }
+.badge-engage { background:#E3F2FD; color:#1565C0; border:1px solid #90CAF9; }
+
+/* CALENDÁRIO VISUAL */
+#overview { background:var(--white); }
+.cal-wrap { display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:start; }
+.cal-grid-wrap { }
+.cal-legend { display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:1rem; }
+.cal-leg-item { display:flex; align-items:center; gap:6px; font-size:11px; color:var(--gray); }
+.cal-leg-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+.cal-month { background:var(--gray-light); border-radius:16px; padding:1.25rem; }
+.cal-month-title { font-size:13px; font-weight:500; color:var(--dark); text-align:center; margin-bottom:0.75rem; letter-spacing:1px; text-transform:uppercase; }
+.cal-days-header { display:grid; grid-template-columns:repeat(7,1fr); gap:2px; margin-bottom:4px; }
+.cal-days-header span { font-size:10px; color:var(--gray); text-align:center; font-weight:500; padding:4px 0; }
+.cal-days { display:grid; grid-template-columns:repeat(7,1fr); gap:2px; }
+.cal-day { min-height:48px; border-radius:8px; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding:5px 3px 3px; font-size:12px; font-weight:400; color:var(--gray); background:transparent; position:relative; }
+.cal-day.empty { opacity:0; pointer-events:none; }
+.cal-day-num { font-size:12px; line-height:1; margin-bottom:3px; }
+.cal-day.has-post .cal-day-num { color:var(--primary); font-weight:500; }
+.cal-day.has-reel .cal-day-num { color:var(--reel); font-weight:500; }
+.cal-day.has-both .cal-day-num { color:var(--dark); font-weight:500; }
+.cal-day.has-post { background:var(--primary-soft); border-radius:8px; }
+.cal-day.has-reel { background:var(--reel-bg); border-radius:8px; }
+.cal-day.has-data { border:2px solid #F0C040; }
+.cal-pip { width:5px; height:5px; border-radius:50%; margin:1px; flex-shrink:0; }
+.cal-pips { display:flex; flex-wrap:wrap; justify-content:center; gap:1px; }
+.pip-post { background:var(--primary); }
+.pip-reel { background:var(--reel); }
+.cal-day-label { font-size:8px; font-weight:500; text-align:center; line-height:1.2; color:var(--gray); }
+.cal-day.has-post .cal-day-label { color:var(--primary); }
+.cal-day.has-reel .cal-day-label { color:var(--reel); }
+.cal-day.has-both .cal-day-label { color:var(--dark); }
+
+/* TIMELINE */
+.timeline { display:flex; flex-direction:column; gap:0; }
+.tl-item { display:grid; grid-template-columns:90px 1px 1fr; gap:0 1.25rem; align-items:stretch; min-height:56px; }
+.tl-date { text-align:right; padding:0.85rem 0; }
+.tl-day { font-family:'Playfair Display',serif; font-size:20px; color:var(--dark); line-height:1; }
+.tl-weekday { font-size:10px; color:var(--gray); margin-top:2px; }
+.tl-line { background:var(--primary-pale); position:relative; }
+.tl-line::before { content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:10px; height:10px; border-radius:50%; background:var(--primary); border:2px solid var(--white); box-shadow:0 0 0 2px var(--primary-pale); }
+.tl-line.orange-line { background:var(--reel-bg); }
+.tl-line.orange-line::before { background:var(--reel); box-shadow:0 0 0 2px var(--reel-bg); }
+.tl-content { padding:0.75rem 0; }
+.tl-titulo { font-size:13px; font-weight:500; color:var(--dark); line-height:1.3; }
+.tl-formato { font-size:11px; color:var(--gray); font-weight:300; margin-top:2px; }
+
+/* POSTS GRID */
+#posts { background:var(--gray-light); }
+.posts-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.25rem; }
+.post-card { background:var(--white); border-radius:16px; overflow:hidden; border:1px solid transparent; transition:all 0.25s; }
+.post-card:hover { border-color:var(--primary-light); transform:translateY(-2px); box-shadow:0 8px 32px rgba(13,71,161,0.1); }
+.post-card-header { padding:1.25rem 1.5rem 0; display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; }
+.post-card-num { font-family:'Playfair Display',serif; font-size:36px; color:var(--primary-pale); line-height:1; flex-shrink:0; }
+.post-card-meta { flex:1; }
+.post-card-date { font-size:10px; color:var(--gray); font-weight:400; margin-bottom:3px; text-transform:uppercase; letter-spacing:0.5px; }
+.post-card-titulo { font-size:14px; font-weight:500; color:var(--dark); line-height:1.3; }
+.post-card-formato { font-size:11px; color:var(--gray); font-weight:300; margin-top:2px; }
+.post-card-art { margin:1rem 1.5rem 0; background:var(--gray-light); border-radius:10px; padding:0.85rem 1rem; border-left:3px solid var(--primary); }
+.post-card-art-label { font-size:9px; color:var(--primary); text-transform:uppercase; letter-spacing:1.5px; font-weight:500; margin-bottom:4px; }
+.post-card-art-titulo { font-size:14px; font-weight:500; color:var(--dark); line-height:1.3; }
+.post-card-art-sub { font-size:12px; color:var(--gray); font-weight:300; margin-top:2px; font-style:italic; }
+.post-card-body { padding:0.85rem 1.5rem 0; }
+.post-card-leg-label { font-size:9px; color:var(--gray); text-transform:uppercase; letter-spacing:1.5px; font-weight:500; margin-bottom:6px; }
+.post-card-legenda { font-size:12.5px; color:#444; line-height:1.7; font-weight:300; background:var(--gray-light); border-radius:10px; padding:1rem; white-space:pre-line; max-height:180px; overflow:hidden; position:relative; transition:max-height 0.4s ease; }
+.post-card-legenda.expanded { max-height:2000px; }
+.post-card-legenda::after { content:''; position:absolute; bottom:0; left:0; right:0; height:48px; background:linear-gradient(transparent,var(--gray-light)); border-radius:0 0 10px 10px; transition:opacity 0.3s; }
+.post-card-legenda.expanded::after { opacity:0; }
+.post-card-footer { padding:0.75rem 1.5rem 1.25rem; display:flex; align-items:center; justify-content:space-between; gap:0.5rem; }
+.hashtags { font-size:11px; color:var(--primary-light); font-weight:300; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; max-width:68%; }
+.btn-ver { font-size:11px; font-weight:500; color:var(--primary); background:var(--primary-soft); border:none; border-radius:20px; padding:5px 14px; cursor:pointer; flex-shrink:0; transition:background 0.2s; }
+.btn-ver:hover { background:var(--primary-pale); }
+.post-card.data-card { border-top:3px solid #F0C040; }
+.post-card.engage-card { border-top:3px solid #1565C0; }
+
+/* REELS */
+#reels { background:var(--dark); }
+#reels .section-label { color:rgba(255,255,255,0.5); }
+#reels .section-label::after { background:rgba(255,255,255,0.1); }
+#reels .section-title { color:var(--white); }
+.reels-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.25rem; }
+.reel-card { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:16px; overflow:hidden; transition:all 0.25s; }
+.reel-card:hover { background:rgba(255,255,255,0.08); border-color:rgba(25,118,210,0.4); transform:translateY(-2px); }
+.reel-card-header { padding:1.5rem 1.5rem 1rem; display:flex; align-items:center; gap:1rem; }
+.reel-icon { width:48px; height:48px; background:rgba(13,71,161,0.35); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0; }
+.reel-num { font-size:10px; color:rgba(255,255,255,0.35); text-transform:uppercase; letter-spacing:1px; margin-bottom:3px; }
+.reel-titulo { font-size:14px; font-weight:500; color:var(--white); line-height:1.3; }
+.reel-data { font-size:11px; color:rgba(255,255,255,0.35); margin-top:2px; }
+.reel-roteiro { margin:0 1.5rem; background:rgba(255,255,255,0.05); border-radius:10px; padding:1rem; border-left:2px solid rgba(25,118,210,0.4); }
+.reel-roteiro-label { font-size:9px; color:rgba(255,255,255,0.3); text-transform:uppercase; letter-spacing:2px; margin-bottom:0.6rem; }
+.reel-roteiro-item { font-size:12px; color:rgba(255,255,255,0.6); line-height:1.5; padding:3px 0; font-weight:300; }
+.reel-legenda-wrap { padding:1rem 1.5rem 0.5rem; }
+.reel-legenda-label { font-size:9px; color:rgba(255,255,255,0.3); text-transform:uppercase; letter-spacing:2px; margin-bottom:0.6rem; }
+.reel-legenda { font-size:12.5px; color:rgba(255,255,255,0.6); line-height:1.65; font-weight:300; white-space:pre-line; max-height:150px; overflow:hidden; position:relative; transition:max-height 0.4s; }
+.reel-legenda.expanded { max-height:2000px; }
+.reel-legenda::after { content:''; position:absolute; bottom:0; left:0; right:0; height:40px; background:linear-gradient(transparent,rgba(13,27,42,0.95)); transition:opacity 0.3s; }
+.reel-legenda.expanded::after { opacity:0; }
+.reel-footer { padding:0.75rem 1.5rem 1.5rem; display:flex; justify-content:flex-end; }
+.btn-reel { font-size:11px; font-weight:500; color:rgba(255,255,255,0.7); background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); border-radius:20px; padding:5px 14px; cursor:pointer; transition:all 0.2s; }
+.btn-reel:hover { background:rgba(255,255,255,0.14); }
+
+/* REGRAS */
+#regras { background:var(--white); }
+.regras-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+.regra-card { background:var(--gray-light); border-radius:14px; padding:1.5rem; border:1px solid transparent; transition:all 0.25s; }
+.regra-card:hover { border-color:var(--primary-pale); transform:translateY(-2px); }
+.regra-icon { font-size:24px; margin-bottom:0.75rem; }
+.regra-titulo { font-size:14px; font-weight:500; color:var(--dark); margin-bottom:0.4rem; }
+.regra-texto { font-size:13px; color:var(--gray); line-height:1.55; font-weight:300; }
+
+/* PROPOSTA VISUAL */
+#proposta-visual { background:var(--white); }
+.proposta-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+.proposta-item { background:var(--gray-light); border-radius:16px; border:1px solid transparent; transition:all 0.3s; overflow:visible; cursor:pointer; }
+.proposta-item:hover { border-color:var(--primary-light); transform:translateY(-4px); box-shadow:0 12px 40px rgba(13,71,161,0.12); }
+.proposta-img { width:100%; height:auto; display:block; border-radius:12px; margin-bottom:0.75rem; }
+.proposta-label { padding:0.75rem; text-align:center; font-size:13px; font-weight:500; color:var(--dark); background:var(--primary-soft); border-radius:8px; }
+
+/* LIGHTBOX */
+.lightbox { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.92); z-index:999; display:none; align-items:center; justify-content:center; padding:2rem; }
+.lightbox.active { display:flex; }
+.lightbox-content { max-width:90%; max-height:90%; object-fit:contain; border-radius:12px; box-shadow:0 20px 60px rgba(0,0,0,0.5); }
+.lightbox-close { position:absolute; top:1.5rem; right:2rem; font-size:36px; color:var(--white); cursor:pointer; background:none; border:none; transition:transform 0.2s; line-height:1; }
+.lightbox-close:hover { transform:scale(1.15); }
+
+/* STORIES */
+#stories { background:var(--primary); }
+#stories .section-label { color:rgba(255,255,255,0.55); }
+#stories .section-label::after { background:rgba(255,255,255,0.2); }
+#stories .section-title { color:var(--white); }
+.stories-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+.story-day { background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.18); border-radius:14px; padding:1.25rem; backdrop-filter:blur(4px); transition:all 0.2s; }
+.story-day:hover { background:rgba(255,255,255,0.15); }
+.story-day-name { font-size:12px; font-weight:500; color:var(--white); margin-bottom:1rem; padding-bottom:0.6rem; border-bottom:1px solid rgba(255,255,255,0.15); }
+.story-item { display:flex; gap:8px; margin-bottom:0.6rem; align-items:flex-start; }
+.story-dot { width:18px; height:18px; background:rgba(255,255,255,0.15); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:9px; color:rgba(255,255,255,0.7); flex-shrink:0; margin-top:1px; font-weight:500; }
+.story-text { font-size:12px; color:rgba(255,255,255,0.7); line-height:1.45; font-weight:300; }
+
+/* FIM */
+#fim { background:var(--dark); min-height:40vh; display:flex; align-items:center; justify-content:center; text-align:center; position:relative; overflow:hidden; }
+#fim::before { content:''; position:absolute; bottom:-150px; left:50%; transform:translateX(-50%); width:600px; height:600px; background:radial-gradient(circle,rgba(13,71,161,0.28) 0%,transparent 70%); pointer-events:none; }
+.fim-logo { font-family:'Playfair Display',serif; font-size:48px; color:var(--white); letter-spacing:-1.5px; }
+.fim-logo span { color:var(--primary-light); }
+.fim-sub { font-size:11px; color:rgba(255,255,255,0.3); letter-spacing:3px; text-transform:uppercase; margin-top:0.5rem; }
+
+/* SIDE NAV */
+.slide-nav { position:fixed; right:1.25rem; top:50%; transform:translateY(-50%); display:flex; flex-direction:column; gap:8px; z-index:99; }
+.sn-dot { width:6px; height:6px; border-radius:50%; background:rgba(0,0,0,0.15); cursor:pointer; transition:all 0.2s; }
+.sn-dot.active { background:var(--primary); transform:scale(1.5); }
+
+/* ANIMATE */
+.animate { opacity:0; transform:translateY(18px); transition:opacity 0.55s ease, transform 0.55s ease; }
+.animate.visible { opacity:1; transform:translateY(0); }
+.animate-delay-1 { transition-delay:0.08s; }
+.animate-delay-2 { transition-delay:0.16s; }
+.animate-delay-3 { transition-delay:0.24s; }
+.animate-delay-4 { transition-delay:0.32s; }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+@keyframes bounce { 0%,100%{transform:rotate(45deg) translateY(0)} 50%{transform:rotate(45deg) translateY(5px)} }
+
+@media(max-width:768px) {
+  .posts-grid,.reels-grid,.regras-grid,.cal-wrap,.proposta-grid,.stories-grid { grid-template-columns:1fr; }
+  .hero-stats { flex-direction:column; }
+  .hero-stat { border-right:none; border-bottom:1px solid rgba(255,255,255,0.08); }
+  nav .nav-right { display:none; }
+  .slide-nav { display:none; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+<div class="slide-nav" id="slideNav"></div>
+
+<nav>
+  <div class="nav-logo">Arthros Medicina</div>
+  <div class="nav-right">
+    <span class="nav-tag">Linha Editorial</span>
+    <span class="nav-month">Maio 2026</span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero" class="hero">
+  <div style="position:relative;z-index:1;width:100%;">
+    <div class="hero-tag">Linha Editorial · Maio 2026</div>
+    <h1 class="hero-title">Calendário<br><span>Editorial</span></h1>
+    <p class="hero-sub">8 posts prioritários distribuídos ao longo do mês de maio, com artes, legendas e hashtags prontas para publicar.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="hero-stat-val">8</span><span class="hero-stat-lbl">Posts</span></div>
+      <div class="hero-stat"><span class="hero-stat-val">Maio</span><span class="hero-stat-lbl">Datas da Saúde</span></div>
+      <div class="hero-stat"><span class="hero-stat-val">31/05</span><span class="hero-stat-lbl">Entrega</span></div>
+    </div>
+  </div>
+  <div class="scroll-hint"><span>Scroll</span><div class="arrow-down"></div></div>
+</section>
+
+<!-- VISÃO GERAL -->
+<section id="overview" class="section">
+  <div class="section-inner">
+    <div class="section-label animate">01 — Visão Geral</div>
+    <h2 class="section-title animate animate-delay-1">O mês de maio<br><em>dia a dia</em></h2>
+
+    <div class="cal-wrap">
+
+      <!-- CALENDÁRIO VISUAL -->
+      <div class="cal-grid-wrap animate animate-delay-2">
+        <div class="cal-legend">
+          <div class="cal-leg-item"><div class="cal-leg-dot" style="background:var(--primary);"></div>Post</div>
+          <div class="cal-leg-item"><div class="cal-leg-dot" style="background:#F0C040;border:1px solid #C9A000;"></div>Data comemorativa</div>
+        </div>
+        <div class="cal-month">
+          <div class="cal-month-title">Maio 2026</div>
+          <div class="cal-days-header">
+            <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
+          </div>
+          <div class="cal-days">
+            <!-- Maio 2026 começa numa sexta-feira (índice 5) -->
+            <div class="cal-day empty"></div>
+            <div class="cal-day empty"></div>
+            <div class="cal-day empty"></div>
+            <div class="cal-day empty"></div>
+            <div class="cal-day empty"></div>
+            <!-- 01 - Post #1 - Dia do Trabalhador -->
+            <div class="cal-day has-post">
+              <div class="cal-day-num">5</div>
+              <div class="cal-pips"><div class="cal-pip pip-post"></div></div>
+              <div class="cal-day-label">Post 1</div>
+            </div>
+            <!-- 06 - Post #2 - Saúde Ocupacional -->
+            <div class="cal-day has-post">
+              <div class="cal-day-num">6</div>
+              <div class="cal-pips"><div class="cal-pip pip-post"></div></div>
+              <div class="cal-day-label">Post 2</div>
+            </div>
+            <!-- 07 - Post #3 - Endometriose -->
+            <div class="cal-day has-post has-data">
+              <div class="cal-day-num">7</div>
+              <div class="cal-pips"><div class="cal-pip pip-post"></div></div>
+              <div class="cal-day-label">Post 3</div>
+            </div>
+            <!-- 08 - Vago -->
+            <div class="cal-day"><div class="cal-day-num">8</div></div>
+            <!-- Sem 2 -->
+            <div class="cal-day"><div class="cal-day-num">9</div></div>
+            <!-- 10 - Post #4 - Dia das Mães -->
+            <div class="cal-day has-post has-data">
+              <div class="cal-day-num">10</div>
+              <div class="cal-pips"><div class="cal-pip pip-post"></div></div>
+              <div class="cal-day-label">Post 4</div>
+            </div>
+            <!-- 11 - Post #5 - Ondas de Choque -->
+            <div class="cal-day has-post">
+              <div class="cal-day-num">11</div>
+              <div class="cal-pips"><div class="cal-pip pip-post"></div></div>
+              <div class="cal-day-label">Post 5</div>
+            </div>
+            <!-- Sem 3 -->
+            <!-- 12 - Post #6 - Dia da Enfermagem -->
+            <div class="cal-day has-post has-data">
+              <div class="cal-day-num">12</div>
+              <div class="cal-pips"><div class="cal-pip pip-post"></div></div>
+              <div class="cal-day-label">Post 6</div>
+            </div>
+            <div class="cal-day"><div class="cal-day-num">13</div></div>
+            <!-- 14 - Vago -->
+            <div class="cal-day"><div class="cal-day-num">14</div></div>
+            <!-- 15 - Vago -->
+            <div class="cal-day"><div class="cal-day-num">15</div></div>
+            <!-- Sem 4 -->
+            <div class="cal-day"><div class="cal-day-num">16</div></div>
+            <!-- 17 - Vago -->
+            <div class="cal-day"><div class="cal-day-num">17</div></div>
+            <div class="cal-day"><div class="cal-day-num">18</div></div>
+            <!-- 19 - Post #7 - Doença Inflamatória Intestinal -->
+            <div class="cal-day has-post has-data">
+              <div class="cal-day-num">19</div>
+              <div class="cal-pips"><div class="cal-pip pip-post"></div></div>
+              <div class="cal-day-label">Post 7</div>
+            </div>
+            <div class="cal-day"><div class="cal-day-num">20</div></div>
+            <div class="cal-day"><div class="cal-day-num">21</div></div>
+            <div class="cal-day"><div class="cal-day-num">22</div></div>
+            <div class="cal-day"><div class="cal-day-num">23</div></div>
+            <!-- Sem 5 -->
+            <div class="cal-day"><div class="cal-day-num">24</div></div>
+            <div class="cal-day"><div class="cal-day-num">25</div></div>
+            <div class="cal-day"><div class="cal-day-num">26</div></div>
+            <div class="cal-day"><div class="cal-day-num">27</div></div>
+            <!-- 28 - Post #8 - Saúde da Mulher -->
+            <div class="cal-day has-post has-data">
+              <div class="cal-day-num">28</div>
+              <div class="cal-pips"><div class="cal-pip pip-post"></div></div>
+              <div class="cal-day-label">Post 8</div>
+            </div>
+            <div class="cal-day"><div class="cal-day-num">29</div></div>
+            <div class="cal-day"><div class="cal-day-num">30</div></div>
+            <div class="cal-day"><div class="cal-day-num">31</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TIMELINE -->
+      <div class="animate animate-delay-3">
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-date"><div class="tl-day">05</div><div class="tl-weekday">Terça</div></div>
+            <div class="tl-line"></div>
+            <div class="tl-content"><span class="tl-badge badge-post">Post #1 · Educativo</span><div class="tl-titulo">Dores na infância merecem atenção especializada.</div><div class="tl-formato">Arte · Ortopedia Pediátrica</div></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date"><div class="tl-day">06</div><div class="tl-weekday">Quarta</div></div>
+            <div class="tl-line"></div>
+            <div class="tl-content"><span class="tl-badge badge-post">Post #2 · Educativo</span><div class="tl-titulo">Sua pele pede atenção além do espelho.</div><div class="tl-formato">Arte · Dermatologia</div></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date"><div class="tl-day">07</div><div class="tl-weekday">Quinta · Dia da Endometriose</div></div>
+            <div class="tl-line"></div>
+            <div class="tl-content"><span class="tl-badge badge-data">Post #3 · Data Comemorativa</span><div class="tl-titulo">Sua dor no período não é normal. E tem tratamento.</div><div class="tl-formato">Arte · Endometriose</div></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date"><div class="tl-day">10</div><div class="tl-weekday">Domingo · Dia das Mães</div></div>
+            <div class="tl-line"></div>
+            <div class="tl-content"><span class="tl-badge badge-data">Post #4 · Institucional</span><div class="tl-titulo">Feliz Dia das Mães.</div><div class="tl-formato">Arte · Dia das Mães</div></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date"><div class="tl-day">11</div><div class="tl-weekday">Segunda</div></div>
+            <div class="tl-line"></div>
+            <div class="tl-content"><span class="tl-badge badge-post">Post #5 · Educativo</span><div class="tl-titulo">Você não precisa esperar piorar para consultar.</div><div class="tl-formato">Arte · Medicina Preventiva</div></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date"><div class="tl-day">12</div><div class="tl-weekday">Terça · Dia da Enfermagem</div></div>
+            <div class="tl-line"></div>
+            <div class="tl-content"><span class="tl-badge badge-data">Post #6 · Data Comemorativa</span><div class="tl-titulo">Feliz Dia Internacional da Enfermagem!</div><div class="tl-formato">Arte · Dia da Enfermagem</div></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date"><div class="tl-day">19</div><div class="tl-weekday">Terça · DII</div></div>
+            <div class="tl-line"></div>
+            <div class="tl-content"><span class="tl-badge badge-data">Post #7 · Data Comemorativa</span><div class="tl-titulo">Você não precisa se adaptar à dor e ao desconforto.</div><div class="tl-formato">Arte · Doença Inflamatória Intestinal</div></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date"><div class="tl-day">28</div><div class="tl-weekday">Quinta · Saúde da Mulher</div></div>
+            <div class="tl-line"></div>
+            <div class="tl-content"><span class="tl-badge badge-data">Post #8 · Data Comemorativa</span><div class="tl-titulo">Sua saúde é o seu bem mais valioso. Cuidar dela é se amar.</div><div class="tl-formato">Arte · Dia Internacional da Saúde da Mulher</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- POSTS -->
+<section id="posts" class="section">
+  <div class="section-inner">
+    <div class="section-label animate">02 — Posts Prioritários</div>
+    <h2 class="section-title animate animate-delay-1">8 posts com arte, legenda e hashtags<br><em>De 01/05 a 31/05</em></h2>
+    <div class="posts-grid">
+
+      <!-- POST 1 - ORTOPEDIA PEDIÁTRICA -->
+      <div class="post-card animate animate-delay-2">
+        <div class="post-card-header">
+          <div class="post-card-num">01</div>
+          <div class="post-card-meta">
+            <div class="post-card-date">05 de Maio · Terça · Educativo</div>
+            <div class="post-card-titulo">Dores na infância merecem atenção especializada.</div>
+          </div>
+          <span class="tl-badge badge-post" style="flex-shrink:0;">Post</span>
+        </div>
+        <div class="post-card-art">
+          <div class="post-card-art-label">Sugestão de Arte</div>
+          <div class="post-card-art-titulo">Dores na infância merecem atenção especializada.</div>
+          <div class="post-card-art-sub">A ortopedia pediátrica cuida do corpo em crescimento, antes, durante e depois da dor</div>
+          <img src="imgs/post 1.png" alt="Post 1 - Ortopedia Pediátrica" style="width:100%; margin-top:0.75rem; border-radius:10px;">
+        </div>
+        <div class="post-card-body">
+          <div class="post-card-leg-label">Legenda</div>
+          <div class="post-card-legenda" id="leg1">Dores na infância merecem atenção especializada.
+
+Crianças e adolescentes também sentem dores. Queda constante, pé chato, dor nas costas da mochila, joelho que dói após a prática esportiva — muitos sinais que pais nem sempre percebem ou atribuem a "fadiga".
+
+A ortopedia pediátrica é especializada no diagnóstico e tratamento de problemas musculoesqueléticos em crianças e adolescentes, em plena fase de desenvolvimento e crescimento.
+
+Na Arthros, seu filho recebe cuidado especializado:
+
+🧒 Crianças e adolescentes
+🦴 Tratamento de doenças ortopédicas infantis
+🏃 Recuperação de lesões esportivas
+🩺 Avaliação postural e da pisada
+💪 Acompanhamento do desenvolvimento motor
+
+A ortopedia pediátrica não é só para quando algo dói. É prevenção, acompanhamento e tratamento adequado para cada fase da infância e adolescência.
+
+📲 Agende sua consulta agora!
+
+Arthros Especialidades Médicas — Parauapebas.
+📲 Agende pelo WhatsApp: link na bio.
+
+#ArthrosMedicina #OrtopediaPediatrica #SaudeInfantil #CriancaEmParauapebas #Ortopedia #Pediatria #CrescimentoSaudavel</div>
+        </div>
+        <div class="post-card-footer">
+          <div class="hashtags">#OrtopediaPediatrica #SaúdeInfantil #Parauapebas</div>
+          <button class="btn-ver" onclick="toggleLeg('leg1',this)">Ver tudo</button>
+        </div>
+      </div>
+
+      <!-- POST 2 - DERMATOLOGIA -->
+      <div class="post-card animate animate-delay-2">
+        <div class="post-card-header">
+          <div class="post-card-num">02</div>
+          <div class="post-card-meta">
+            <div class="post-card-date">06 de Maio · Quarta · Educativo</div>
+            <div class="post-card-titulo">Sua pele pede atenção além do espelho.</div>
+          </div>
+          <span class="tl-badge badge-post" style="flex-shrink:0;">Post</span>
+        </div>
+        <div class="post-card-art">
+          <div class="post-card-art-label">Sugestão de Arte</div>
+          <div class="post-card-art-titulo">Sua pele pede atenção além do espelho.</div>
+          <div class="post-card-art-sub">Saúde da pele é prevenção, autocuidado e qualidade de vida</div>
+          <img src="imgs/post 2.png" alt="Post 2 - Dermatologia" style="width:100%; margin-top:0.75rem; border-radius:10px;">
+        </div>
+        <div class="post-card-body">
+          <div class="post-card-leg-label">Legenda</div>
+          <div class="post-card-legenda" id="leg2">Sua pele pede atenção além do espelho.
+
+A pele é o maior órgão do corpo — e também o mais exposto. Manchas, acne, ressecamento, queda de cabelo, unhas frágeis... muitos sinais que passam despercebidos no dia a dia, mas que merecem avaliação especializada.
+
+Saúde da pele é muito mais do que estética. É prevenção, autocuidado e qualidade de vida.
+
+Na Arthros, você conta com atendimento especializado para cuidar da sua pele de verdade — por dentro e por fora.
+
+🔍 Diagnóstico preciso
+💊 Tratamento personalizado
+🌿 Prevenção e acompanhamento contínuo
+✨ Mais saúde, mais confiança
+
+Não espere o problema piorar. Sua pele merece atenção agora.
+
+📲 Agende sua consulta pelo WhatsApp: link na bio.
+Arthros Especialidades Médicas — Parauapebas.
+📞 (94) 99204-4824
+
+#ArthrosMedicina #SaudeDaPele #Dermatologia #CuidadoComAPele #Parauapebas #Autocuidado #PelesSaudavel #ConsultaMedica</div>
+        </div>
+        <div class="post-card-footer">
+          <div class="hashtags">#Dermatologia #SaúdeDaPele #Parauapebas</div>
+          <button class="btn-ver" onclick="toggleLeg('leg2',this)">Ver tudo</button>
+        </div>
+      </div>
+
+      <!-- POST 3 - ENDOMETRIOSE -->
+      <div class="post-card data-card animate animate-delay-3">
+        <div class="post-card-header">
+          <div class="post-card-num">03</div>
+          <div class="post-card-meta">
+            <div class="post-card-date">07 de Maio · Quinta · Dia Internacional da Luta contra a Endometriose</div>
+            <div class="post-card-titulo">Sua dor no período não é normal. E tem tratamento.</div>
+          </div>
+          <span class="tl-badge badge-data" style="flex-shrink:0;">Data</span>
+        </div>
+        <div class="post-card-art">
+          <div class="post-card-art-label">Sugestão de Arte</div>
+          <div class="post-card-art-titulo">Sua dor no período não é normal. E tem tratamento.</div>
+          <div class="post-card-art-sub">Endometriose: diagnóstico precoce transforma sua qualidade de vida</div>
+          <img src="imgs/post 3.png" alt="Post 3 - Endometriose" style="width:100%; margin-top:0.75rem; border-radius:10px;">
+        </div>
+        <div class="post-card-body">
+          <div class="post-card-leg-label">Legenda</div>
+          <div class="post-card-legenda" id="leg3">Sua dor no período não é normal. E tem tratamento.
+
+Cólicas intensas que te fazem faltar ao trabalho. Sangramento abundante. Dor durante a relação. Cansaço extremo todo mês. Muitas mulheres acreditam que isso é "parte de ser mulher" — mas não é.
+
+Endometriose é uma condição que afeta cerca de 1 em cada 10 mulheres em idade reprodutiva. E o diagnóstico precoce faz toda a diferença na qualidade de vida.
+
+Na Arthros, você encontra cuidado especializado em saúde da mulher:
+
+💙 Ginecologia com foco em endometriose
+🩺 Investigação de dor pélvica crônica
+💊 Tratamento clínico e acompanhamento
+🤝 Equipe acolhedora que escuta sua queixa
+
+Mulher não precisa sentir dor todo mês. Investigar é autocuidado.
+
+📲 Agende sua consulta agora!
+
+Arthros Especialidades Médicas — Parauapebas.
+📲 Agende pelo WhatsApp: link na bio.
+
+#ArthrosMedicina #Endometriose #SaudeDaMulher #DorPelvica #GinecologiaParauapebas #EndometrioseTemTratamento</div>
+        </div>
+        <div class="post-card-footer">
+          <div class="hashtags">#Endometriose #SaúdeDaMulher #Parauapebas</div>
+          <button class="btn-ver" onclick="toggleLeg('leg3',this)">Ver tudo</button>
+        </div>
+      </div>
+
+      <!-- POST 4 - DIA DAS MÃES - INSTITUCIONAL -->
+      <div class="post-card data-card animate animate-delay-3">
+        <div class="post-card-header">
+          <div class="post-card-num">04</div>
+          <div class="post-card-meta">
+            <div class="post-card-date">10 de Maio · Domingo · Dia das Mães</div>
+            <div class="post-card-titulo">Feliz Dia das Mães.</div>
+          </div>
+          <span class="tl-badge badge-data" style="flex-shrink:0;">Data</span>
+        </div>
+        <div class="post-card-art">
+          <div class="post-card-art-label">Sugestão de Arte</div>
+          <div class="post-card-art-titulo">Feliz Dia das Mães.</div>
+          <div class="post-card-art-sub">A Arthros celebra a mulher que faz a vida acontecer</div>
+          <img src="imgs/post 4.png" alt="Post 4 - Dia das Mães" style="width:100%; margin-top:0.75rem; border-radius:10px;">
+        </div>
+        <div class="post-card-body">
+          <div class="post-card-leg-label">Legenda</div>
+          <div class="post-card-legenda" id="leg4">Feliz Dia das Mães.
+
+Neste Dia das Mães, queremos homenagear quem acorda antes de todo mundo, dorme depois, segura a família junto, trabalha, estuda e ainda encontra sorriso para distribuir. Mãe é a base que sustenta tudo — muitas vezes sem tempo para cuidar de si mesma.
+
+Parauapebas é feita de mulheres fortes. E a Arthros existe para estar ao lado delas.
+
+Clínica completa, atendimento humanizado, estrutura acolhedora. Aqui, ela encontra espaço para se cuidar, se ouvir e se priorizar — porque quem cuida de todo mundo também merece ser cuidada.
+
+A todas as mães de Parauapebas: nosso respeito e nossa gratidão. E nosso compromisso de estar aqui, sempre que você precisar.
+
+Feliz Dia das Mães. 💙
+
+Arthros Especialidades Médicas — Parauapebas.
+📲 Agende pelo WhatsApp: link na bio.
+
+#ArthrosMedicina #DiaDasMaes #FelizDiaDasMaes #MulheresDeParauapebas #SaudeEmParauapebas</div>
+        </div>
+        <div class="post-card-footer">
+          <div class="hashtags">#DiaDasMães #Parauapebas #Arthros</div>
+          <button class="btn-ver" onclick="toggleLeg('leg4',this)">Ver tudo</button>
+        </div>
+      </div>
+
+      <!-- POST 5 - MEDICINA PREVENTIVA -->
+      <div class="post-card animate animate-delay-4">
+        <div class="post-card-header">
+          <div class="post-card-num">05</div>
+          <div class="post-card-meta">
+            <div class="post-card-date">11 de Maio · Segunda · Educativo</div>
+            <div class="post-card-titulo">Você não precisa esperar piorar para consultar.</div>
+          </div>
+          <span class="tl-badge badge-post" style="flex-shrink:0;">Post</span>
+        </div>
+        <div class="post-card-art">
+          <div class="post-card-art-label">Sugestão de Arte</div>
+          <div class="post-card-art-titulo">Você não precisa esperar piorar para consultar.</div>
+          <div class="post-card-art-sub">Cuidar da saúde antes de adoecer é o melhor remédio que existe</div>
+          <img src="imgs/post 5.png" alt="Post 5 - Medicina Preventiva" style="width:100%; margin-top:0.75rem; border-radius:10px;">
+        </div>
+        <div class="post-card-body">
+          <div class="post-card-leg-label">Legenda</div>
+          <div class="post-card-legenda" id="leg5">Muita gente só vai ao médico quando a situação já está difícil. Mas saúde não funciona assim.
+
+O acompanhamento regular com um clínico geral é o que permite identificar alterações antes que elas se tornem um problema sério — e isso faz toda a diferença no tratamento.
+
+Na Arthros Medicina, você tem clínico geral disponível todos os dias, com atendimento completo, humanizado e aqui mesmo em Parauapebas.
+
+✅ Clínico geral todos os dias
+✅ Avaliação clínica completa
+✅ Solicitação de exames preventivos
+✅ Acompanhamento contínuo da sua saúde
+✅ Encaminhamento para especialistas quando necessário
+
+Não espere os sintomas piorarem. Cuide-se agora.
+
+📲 Agende sua consulta agora!
+
+Arthros Especialidades Médicas — Parauapebas.
+📲 Agende pelo WhatsApp: link na bio.
+
+#ArthrosMedicina #ClinicoGeral #Consulta #parauapebas</div>
+        </div>
+        <div class="post-card-footer">
+          <div class="hashtags">#ClínicoGeral #Consulta #Parauapebas</div>
+          <button class="btn-ver" onclick="toggleLeg('leg5',this)">Ver tudo</button>
+        </div>
+      </div>
+
+      <!-- POST 6 - DIA INTERNACIONAL DA ENFERMAGEM -->
+      <div class="post-card data-card animate animate-delay-4">
+        <div class="post-card-header">
+          <div class="post-card-num">06</div>
+          <div class="post-card-meta">
+            <div class="post-card-date">12 de Maio · Terça · Dia Internacional da Enfermagem</div>
+            <div class="post-card-titulo">Feliz Dia Internacional da Enfermagem!</div>
+          </div>
+          <span class="tl-badge badge-data" style="flex-shrink:0;">Data</span>
+        </div>
+        <div class="post-card-art">
+          <div class="post-card-art-label">Sugestão de Arte</div>
+          <div class="post-card-art-titulo">Feliz Dia Internacional da Enfermagem!</div>
+          <div class="post-card-art-sub">Homenagem da Arthros aos profissionais que salvam vidas todos os dias</div>
+          <img src="imgs/post 6.png" alt="Post 6 - Dia da Enfermagem" style="width:100%; margin-top:0.75rem; border-radius:10px;">
+        </div>
+        <div class="post-card-body">
+          <div class="post-card-leg-label">Legenda</div>
+          <div class="post-card-legenda" id="leg6">Feliz Dia Internacional da Enfermagem! 💙
+
+Neste 12 de maio, a Arthros presta homenagem a Florence Nightingale e a todos os enfermeiros e técnicos de enfermagem que dedicam suas vidas a cuidar dos outros.
+
+Enfermagem não é apenas uma profissão — é vocação, amor e ciência. É quem está presente nos momentos mais difíceis, quem segura a mão, quem escuta, quem cuida com técnica e coração.
+
+A toda equipe de enfermagem de Parauapebas e do Brasil:
+
+🌟 Você é a base da saúde
+🌟 Seu trabalho faz a diferença todo dia
+🌟 Sua dedicação salva vidas
+🌟 Você merece ser reconhecido e valorizado
+
+A Arthros celebra e agradece cada profissional de enfermagem. Vocês são essenciais.
+
+💙 Feliz Dia Internacional da Enfermagem!
+
+Arthros Especialidades Médicas — Parauapebas.
+📲 Agende pelo WhatsApp: link na bio.
+
+#ArthrosMedicina #DiaInternacionalDaEnfermagem #FelizDiaDaEnfermagem #Enfermagem #ProfissionaisDaSaude #Parauapebas</div>
+        </div>
+        <div class="post-card-footer">
+          <div class="hashtags">#DiaDaEnfermagem #Parauapebas #Arthros</div>
+          <button class="btn-ver" onclick="toggleLeg('leg6',this)">Ver tudo</button>
+        </div>
+      </div>
+
+      <!-- POST 7 - DOENÇA INFLAMATÓRIA INTESTINAL -->
+      <div class="post-card data-card animate animate-delay-4">
+        <div class="post-card-header">
+          <div class="post-card-num">07</div>
+          <div class="post-card-meta">
+            <div class="post-card-date">19 de Maio · Terça · Dia Mundial da Doença Inflamatória Intestinal</div>
+            <div class="post-card-titulo">Você não precisa se adaptar à dor e ao desconforto.</div>
+          </div>
+          <span class="tl-badge badge-data" style="flex-shrink:0;">Data</span>
+        </div>
+        <div class="post-card-art">
+          <div class="post-card-art-label">Sugestão de Arte</div>
+          <div class="post-card-art-titulo">Você não precisa se adaptar à dor e ao desconforto.</div>
+          <div class="post-card-art-sub">Doença de Crohn e Retocolite: tratamento transforma sua rotina</div>
+          <img src="imgs/post 7.png" alt="Post 7 - Doença Inflamatória Intestinal" style="width:100%; margin-top:0.75rem; border-radius:10px;">
+        </div>
+        <div class="post-card-body">
+          <div class="post-card-leg-label">Legenda</div>
+          <div class="post-card-legenda" id="leg7">Você não precisa se adaptar à dor e ao desconforto.
+
+Conviver com dor abdominal constante, urgência para ir ao banheiro, perda de peso sem explicação, cansaço extremo e fezes com sangue não é normal — e muito menos é "frescura" ou "coisa da cabeça".
+
+Doenças inflamatórias intestinais — como Doença de Crohn e Retocolite Ulcerativa — afetam milhares de brasileiros e impactam diretamente a qualidade de vida. O diagnóstico correto e o tratamento adequado fazem toda a diferença.
+
+Na Arthros, você encontra:
+
+🩺 Gastroenterologia especializada
+💙 Exames e investigação completa
+🤝 Acompanhamento prolongado
+💊 Tratamento individualizado
+
+Viver bem é possível. Conviver com sintomas que tem tratamento não é necessário.
+
+📲 Agende sua consulta agora!
+
+Arthros Especialidades Médicas — Parauapebas.
+📲 Agende pelo WhatsApp: link na bio.
+
+#ArthrosMedicina #DoencaInflamatoriaIntestinal #Crohn #Retocolite #Gastroenterologia #SaudeIntestinal</div>
+        </div>
+        <div class="post-card-footer">
+          <div class="hashtags">#DII #Gastroenterologia #Parauapebas</div>
+          <button class="btn-ver" onclick="toggleLeg('leg7',this)">Ver tudo</button>
+        </div>
+      </div>
+
+      <!-- POST 8 - DIA INTERNACIONAL DA LUTA PELA SAÚDE DA MULHER -->
+      <div class="post-card data-card animate animate-delay-4">
+        <div class="post-card-header">
+          <div class="post-card-num">08</div>
+          <div class="post-card-meta">
+            <div class="post-card-date">28 de Maio · Quinta · Dia Internacional da Luta pela Saúde da Mulher</div>
+            <div class="post-card-titulo">Sua saúde é o seu bem mais valioso. Cuidar dela é se amar.</div>
+          </div>
+          <span class="tl-badge badge-data" style="flex-shrink:0;">Data</span>
+        </div>
+        <div class="post-card-art">
+          <div class="post-card-art-label">Sugestão de Arte</div>
+          <div class="post-card-art-titulo">Sua saúde é o seu bem mais valioso. Cuidar dela é se amar.</div>
+          <div class="post-card-art-sub">Dia Internacional da Luta pela Saúde da Mulher.</div>
+          <img src="imgs/post 8.png" alt="Post 8 - Saúde da Mulher" style="width:100%; margin-top:0.75rem; border-radius:10px;">
+        </div>
+        <div class="post-card-body">
+          <div class="post-card-leg-label">Legenda</div>
+          <div class="post-card-legenda" id="leg8">Sua saúde é o seu bem mais valioso. Cuidar dela é se amar.
+
+Neste Dia Internacional da Luta pela Saúde da Mulher, a Arthros quer reforçar: mulheres merecem ser cuidadas com a mesma dedicação que dedicam a todo mundo.
+
+Saúde da mulher vai muito além de ginecologia. É:
+
+💛 Saúde mental e autocuidado
+💙 Prevenção e check-up regular
+🦴 Cuidado com dores crônicas
+🧬 Equilíbrio hormonal
+✨ Cuidado com a pele e autoestima
+
+Mulheres em Parauapebas enfrentam rotinas intensas: trabalho, casa, filhos, estudos. E, na hora de cuidar de si mesmas, sempre aparece algo mais urgente.
+
+Mas a mulher que se cuida está mais forte para tudo o mais.
+
+Na Arthros, você encontra espaço completo para sua saúde:
+
+💙 Ginecologia e Obstetrícia
+🧬 Endocrinologia
+🧘 Psiquiatria
+✨ Dermatologia
+🦴 Ortopedia
+🩺 Clínica Geral
+
+A todas as mulheres de Parauapebas: sua saúde importa. E você merece um espaço que cuide de você por completo.
+
+📲 Agende sua consulta agora!
+
+Arthros Especialidades Médicas — Parauapebas.
+📲 Agende pelo WhatsApp: link na bio.
+
+#ArthrosMedicina #SaudeDaMulher #DiaInternacionalDaSaudeDaMulher #MulheresDeParauapebas #SaudeIntegral #Autocuidado</div>
+        </div>
+        <div class="post-card-footer">
+          <div class="hashtags">#SaúdeDaMulher #Parauapebas #Arthros</div>
+          <button class="btn-ver" onclick="toggleLeg('leg8',this)">Ver tudo</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- FIM -->
+<section id="fim" class="section" style="min-height:40vh;">
+  <div style="position:relative;z-index:1;text-align:center;">
+    <div class="fim-logo animate">Arthros <span>Medicina</span></div>
+    <div class="fim-sub animate animate-delay-1">Linha Editorial · Maio 2026 · Parauapebas, PA</div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+  <img src="" alt="Imagem ampliada" class="lightbox-content" id="lightbox-img">
+</div>
+
+<script>
+function toggleLeg(id, btn) {
+  const el = document.getElementById(id);
+  el.classList.toggle('expanded');
+  btn.textContent = el.classList.contains('expanded') ? 'Fechar' : (id.startsWith('r') ? 'Ver legenda completa' : 'Ver tudo');
+}
+const sections = document.querySelectorAll('section');
+const nav = document.getElementById('slideNav');
+const bar = document.getElementById('progressBar');
+sections.forEach((s,i) => {
+  const dot = document.createElement('div');
+  dot.className = 'sn-dot';
+  dot.onclick = () => s.scrollIntoView({behavior:'smooth'});
+  nav.appendChild(dot);
+});
+const dots = document.querySelectorAll('.sn-dot');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const idx = Array.from(sections).indexOf(e.target);
+      dots.forEach((d,i) => d.classList.toggle('active', i === idx));
+    }
+  });
+}, {threshold:0.4});
+sections.forEach(s => obs.observe(s));
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+  bar.style.width = pct + '%';
+});
+const animObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); animObs.unobserve(e.target); }
+  });
+}, {threshold:0.12});
+document.querySelectorAll('.animate').forEach(el => animObs.observe(el));
+
+function openLightbox(element) {
+  const img = element.querySelector('.proposta-img');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  lightboxImg.src = img.src;
+  lightbox.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  const lightbox = document.getElementById('lightbox');
+  lightbox.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeLightbox();
+});
+</script>
+</body>
+</html>

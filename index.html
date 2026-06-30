@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Linhas Editoriais — Arthros & Instituto Abraçar</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'DM Sans',sans-serif; background:#0D1B2A; color:#fff; min-height:100vh; }
+
+header {
+  padding:4rem 2rem 3rem;
+  text-align:center;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.logo { font-family:'Playfair Display',serif; font-size:clamp(28px,5vw,48px); font-weight:700; letter-spacing:-1px; margin-bottom:.5rem; }
+.logo-arthros { color:#90CAF9; }
+.logo-sep { color:rgba(255,255,255,0.3); margin:0 .75rem; font-weight:300; }
+.logo-instituto { color:#F5B8D6; }
+.subtitle { font-size:13px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-top:.5rem; }
+
+main { max-width:900px; margin:0 auto; padding:3rem 2rem 5rem; }
+
+.brand-section { margin-bottom:3.5rem; }
+.brand-title {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(22px,3vw,30px);
+  margin-bottom:1.5rem;
+  padding-bottom:1rem;
+  border-bottom:1px solid rgba(255,255,255,0.1);
+  display:flex;
+  align-items:center;
+  gap:1rem;
+}
+.brand-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+.arthros-dot { background:#1976D2; }
+.instituto-dot { background:#D94A7A; }
+
+.cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:1rem; }
+
+.card {
+  display:block;
+  text-decoration:none;
+  padding:1.5rem;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,0.1);
+  background:rgba(255,255,255,0.04);
+  transition:all .2s ease;
+  position:relative;
+  overflow:hidden;
+}
+.card::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  opacity:0;
+  transition:opacity .2s;
+}
+.card:hover { transform:translateY(-3px); }
+.card:hover::before { opacity:1; }
+
+.arthros-card::before { background:radial-gradient(circle at top left,rgba(25,118,210,0.15),transparent 70%); }
+.arthros-card:hover { border-color:rgba(25,118,210,0.5); box-shadow:0 8px 32px rgba(25,118,210,0.15); }
+.instituto-card::before { background:radial-gradient(circle at top left,rgba(217,74,122,0.15),transparent 70%); }
+.instituto-card:hover { border-color:rgba(217,74,122,0.5); box-shadow:0 8px 32px rgba(217,74,122,0.15); }
+
+.card-label {
+  font-size:10px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  font-weight:500;
+  margin-bottom:.75rem;
+}
+.arthros-card .card-label { color:#90CAF9; }
+.instituto-card .card-label { color:#F5B8D6; }
+
+.card-month {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(20px,2.5vw,26px);
+  color:#fff;
+  font-weight:700;
+  margin-bottom:.4rem;
+  text-transform:capitalize;
+}
+.card-year {
+  font-size:12px;
+  color:rgba(255,255,255,0.35);
+}
+.card-arrow {
+  position:absolute;
+  bottom:1.25rem;
+  right:1.25rem;
+  font-size:18px;
+  color:rgba(255,255,255,0.2);
+  transition:color .2s, transform .2s;
+}
+.card:hover .card-arrow { color:rgba(255,255,255,0.6); transform:translate(2px,-2px); }
+
+.empty-badge {
+  display:inline-block;
+  font-size:10px;
+  padding:2px 8px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.07);
+  color:rgba(255,255,255,0.3);
+  margin-top:.5rem;
+}
+
+footer {
+  text-align:center;
+  padding:2rem;
+  font-size:12px;
+  color:rgba(255,255,255,0.2);
+  border-top:1px solid rgba(255,255,255,0.06);
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <span class="logo-arthros">Arthros</span>
+    <span class="logo-sep">/</span>
+    <span class="logo-instituto">Instituto Abraçar</span>
+  </div>
+  <p class="subtitle">Linhas Editoriais</p>
+</header>
+
+<main>
+  <section class="brand-section">
+    <h2 class="brand-title">
+      <span class="brand-dot arthros-dot"></span>
+      Arthros Medicina
+    </h2>
+    <div class="cards">
+      <a href="/arthros/maio" class="card arthros-card">
+        <div class="card-label">Linha Editorial</div>
+        <div class="card-month">Maio</div>
+        <div class="card-year">2026</div>
+        <span class="card-arrow">↗</span>
+      </a>
+      <a href="/arthros/junho" class="card arthros-card">
+        <div class="card-label">Linha Editorial</div>
+        <div class="card-month">Junho</div>
+        <div class="card-year">2026</div>
+        <span class="card-arrow">↗</span>
+      </a>
+      <a href="/arthros/julho" class="card arthros-card">
+        <div class="card-label">Linha Editorial</div>
+        <div class="card-month">Julho</div>
+        <div class="card-year">2026</div>
+        <span class="card-arrow">↗</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="brand-section">
+    <h2 class="brand-title">
+      <span class="brand-dot instituto-dot"></span>
+      Instituto Abraçar
+    </h2>
+    <div class="cards">
+      <a href="/instituto/maio" class="card instituto-card">
+        <div class="card-label">Linha Editorial</div>
+        <div class="card-month">Maio</div>
+        <div class="card-year">2026</div>
+        <span class="card-arrow">↗</span>
+      </a>
+      <a href="/instituto/junho" class="card instituto-card">
+        <div class="card-label">Linha Editorial</div>
+        <div class="card-month">Junho</div>
+        <div class="card-year">2026</div>
+        <span class="card-arrow">↗</span>
+      </a>
+      <a href="/instituto/julho" class="card instituto-card">
+        <div class="card-label">Linha Editorial</div>
+        <div class="card-month">Julho</div>
+        <div class="card-year">2026</div>
+        <span class="card-arrow">↗</span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer>Arthros Medicina &amp; Instituto Abraçar — 2026</footer>
+
+</body>
+</html>

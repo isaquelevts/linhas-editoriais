@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instituto Abraçar — Linha Editorial Julho 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'DM Sans',sans-serif; background:#F4F7FB; color:#0D1B2A; overflow-x:hidden; }
+:root {
+  --blue:#1B6FD8; --blue-light:#5BA4F5; --blue-pale:#D6EAFF; --blue-soft:#EEF5FF;
+  --white:#FFFFFF; --dark:#0D1B2A; --gray:#6B7A8D; --gray-light:#F4F7FB;
+  --green:#1A7A3C; --green-bg:#F0FBF4; --green-border:#B7EAC7;
+  --pink:#D94A7A; --pink-light:#F8D5E5; --pink-bg:#FFF0F7; --pink-border:#F5B8D6;
+}
+
+/* NAV */
+nav { position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(255,255,255,0.94); backdrop-filter:blur(14px); border-bottom:1px solid rgba(27,111,216,0.1); padding:0 2rem; display:flex; align-items:center; justify-content:space-between; height:56px; }
+.nav-logo { font-family:'Playfair Display',serif; font-size:16px; color:var(--blue); font-weight:700; }
+.nav-right { display:flex; align-items:center; gap:1.5rem; }
+.nav-tag { font-size:11px; color:var(--gray); letter-spacing:1px; text-transform:uppercase; }
+.nav-month { font-size:12px; font-weight:500; color:var(--pink); background:var(--pink-bg); border:1px solid var(--pink-border); padding:4px 12px; border-radius:20px; }
+
+/* HERO */
+.hero { min-height:100vh; background:var(--dark); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:80px 2rem 4rem; position:relative; overflow:hidden; }
+.hero::before { content:''; position:absolute; top:-200px; left:50%; transform:translateX(-50%); width:800px; height:800px; background:radial-gradient(circle,rgba(217,74,122,0.28) 0%,transparent 70%); pointer-events:none; }
+.hero::after { content:''; position:absolute; bottom:-100px; right:-80px; width:400px; height:400px; background:radial-gradient(circle,rgba(245,184,214,0.12) 0%,transparent 70%); pointer-events:none; }
+.hero-tag { display:inline-block; background:rgba(217,74,122,0.2); color:var(--pink-light); font-size:11px; letter-spacing:2.5px; text-transform:uppercase; padding:6px 18px; border-radius:20px; border:1px solid rgba(245,184,214,0.3); margin-bottom:2rem; animation:fadeUp 0.7s ease both; }
+.hero-title { font-family:'Playfair Display',serif; font-size:clamp(42px,8vw,86px); color:var(--white); line-height:1.0; letter-spacing:-2px; margin-bottom:1.25rem; animation:fadeUp 0.7s 0.12s ease both; }
+.hero-title span { color:var(--pink-light); }
+.hero-sub { font-size:15px; color:rgba(255,255,255,0.45); max-width:460px; margin:0 auto 3rem; line-height:1.7; font-weight:300; animation:fadeUp 0.7s 0.24s ease both; }
+.hero-stats { display:inline-flex; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:14px; overflow:hidden; animation:fadeUp 0.7s 0.36s ease both; }
+.hero-stat { padding:1.25rem 2rem; text-align:center; border-right:1px solid rgba(255,255,255,0.08); }
+.hero-stat:last-child { border-right:none; }
+.hero-stat-val { font-family:'Playfair Display',serif; font-size:30px; color:var(--white); display:block; }
+.hero-stat-lbl { font-size:10px; color:rgba(255,255,255,0.35); letter-spacing:1.5px; text-transform:uppercase; margin-top:2px; }
+.scroll-hint { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:6px; animation:fadeUp 0.7s 0.5s ease both; }
+.scroll-hint span { font-size:9px; color:rgba(255,255,255,0.25); letter-spacing:2px; text-transform:uppercase; }
+.arrow-down { width:18px; height:18px; border-right:1.5px solid rgba(255,255,255,0.25); border-bottom:1.5px solid rgba(255,255,255,0.25); transform:rotate(45deg); animation:bounce 1.6s infinite; }
+
+/* SECTIONS */
+.section { padding:80px 2rem; }
+.section-inner { max-width:1000px; margin:0 auto; }
+.section-label { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--pink); font-weight:500; margin-bottom:0.6rem; display:flex; align-items:center; gap:10px; }
+.section-label::after { content:''; flex:1; height:1px; background:var(--pink-light); }
+.section-title { font-family:'Playfair Display',serif; font-size:clamp(28px,4vw,46px); color:var(--dark); line-height:1.1; letter-spacing:-0.5px; margin-bottom:2.5rem; }
+.section-title em { font-style:italic; color:var(--pink); }
+
+/* BADGES */
+.tl-badge { display:inline-flex; align-items:center; gap:5px; font-size:10px; font-weight:500; padding:3px 10px; border-radius:20px; margin-bottom:5px; text-transform:uppercase; letter-spacing:0.5px; }
+.badge-post { background:var(--blue-soft); color:var(--blue); }
+.badge-reel { background:var(--green-bg); color:var(--green); border:1px solid var(--green-border); }
+.badge-mae { background:var(--pink-bg); color:var(--pink); border:1px solid var(--pink-border); }
+.badge-dica { background:#FFF8E6; color:#92600A; border:1px solid #FFE4A0; }
+
+/* POSTS GRID */
+#posts { background:var(--gray-light); }
+.posts-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.25rem; }
+.post-card { background:var(--white); border-radius:16px; overflow:hidden; border:1px solid transparent; transition:all 0.25s; }
+.post-card:hover { border-color:var(--pink-light); transform:translateY(-2px); box-shadow:0 8px 32px rgba(217,74,122,0.08); }
+.post-card-header { padding:1.25rem 1.5rem 0; display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; }
+.post-card-num { font-family:'Playfair Display',serif; font-size:36px; color:var(--blue-pale); line-height:1; flex-shrink:0; }
+.post-card-meta { flex:1; }
+.post-card-date { font-size:10px; color:var(--gray); font-weight:400; margin-bottom:3px; text-transform:uppercase; letter-spacing:0.5px; }
+.post-card-titulo { font-size:14px; font-weight:500; color:var(--dark); line-height:1.3; }
+.post-card-body { padding:0.85rem 1.5rem 0; }
+.post-card-leg-label { font-size:9px; color:var(--gray); text-transform:uppercase; letter-spacing:1.5px; font-weight:500; margin-bottom:6px; }
+.post-card-legenda { font-size:12.5px; color:#444; line-height:1.7; font-weight:300; background:var(--gray-light); border-radius:10px; padding:1rem; white-space:pre-line; max-height:180px; overflow:hidden; position:relative; transition:max-height 0.4s ease; }
+.post-card-legenda.expanded { max-height:2000px; }
+.post-card-legenda::after { content:''; position:absolute; bottom:0; left:0; right:0; height:48px; background:linear-gradient(transparent,var(--gray-light)); border-radius:0 0 10px 10px; transition:opacity 0.3s; }
+.post-card-legenda.expanded::after { opacity:0; }
+.post-card-footer { padding:0.75rem 1.5rem 1.25rem; display:flex; align-items:center; justify-content:space-between; gap:0.5rem; }
+.hashtags { font-size:11px; color:var(--blue-light); font-weight:300; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; max-width:68%; }
+.btn-ver { font-size:11px; font-weight:500; color:var(--blue); background:var(--blue-soft); border:none; border-radius:20px; padding:5px 14px; cursor:pointer; flex-shrink:0; transition:background 0.2s; }
+.btn-ver:hover { background:var(--blue-pale); }
+.post-card.mae-card { border-top:3px solid var(--pink); }
+.post-card.dica-card { border-top:3px solid #F0C040; }
+
+/* IMG PLACEHOLDER */
+.img-ph { margin:0 0 1rem 0; border-radius:16px 16px 0 0; overflow:hidden; background:#f0f0f0; min-height:200px; display:flex; align-items:center; justify-content:center; }
+.img-ph img { width:100%; height:auto; display:block; }
+.img-ph div { color:#999; font-size:13px; text-align:center; padding:2rem; line-height:1.5; }
+
+/* ANIMATE */
+.animate { opacity:0; transform:translateY(18px); transition:opacity 0.55s ease, transform 0.55s ease; }
+.animate.visible { opacity:1; transform:translateY(0); }
+.animate-delay-1 { transition-delay:0.08s; }
+.animate-delay-2 { transition-delay:0.16s; }
+.animate-delay-3 { transition-delay:0.24s; }
+.animate-delay-4 { transition-delay:0.32s; }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+@keyframes bounce { 0%,100%{transform:rotate(45deg) translateY(0)} 50%{transform:rotate(45deg) translateY(5px)} }
+
+@media(max-width:768px) {
+  .posts-grid { grid-template-columns:1fr; }
+  .hero-stats { flex-direction:column; }
+  .hero-stat { border-right:none; border-bottom:1px solid rgba(255,255,255,0.08); }
+  nav .nav-right { display:none; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Instituto Abraçar</div>
+  <div class="nav-right">
+    <span class="nav-tag">Linha Editorial</span>
+    <span class="nav-month">Julho 2026</span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero" class="hero">
+  <div style="position:relative;z-index:1;width:100%;">
+    <div class="hero-tag">Linha Editorial · Julho 2026</div>
+    <h1 class="hero-title">Calendário<br><span>Editorial</span></h1>
+    <p class="hero-sub">8 posts estáticos com legendas e hashtags prontos para publicar de 06/07 a 30/07. Foco especial em férias escolares, rotina e dicas práticas.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="hero-stat-val">8</span><span class="hero-stat-lbl">Posts</span></div>
+      <div class="hero-stat"><span class="hero-stat-val">8</span><span class="hero-stat-lbl">Legendas</span></div>
+      <div class="hero-stat"><span class="hero-stat-val">8</span><span class="hero-stat-lbl">Artes</span></div>
+      <div class="hero-stat"><span class="hero-stat-val">20/07</span><span class="hero-stat-lbl">Dia do Amigo</span></div>
+    </div>
+  </div>
+  <div class="scroll-hint"><span>Scroll</span><div class="arrow-down"></div></div>
+</section>
+
+<!-- POSTS -->
+<section id="posts" class="section">
+  <div class="section-inner">
+    <div class="section-label animate">Posts Prioritários</div>
+    <h2 class="section-title animate animate-delay-1">Calendário<br><em>Editorial</em></h2>
+    <div class="posts-grid">
+
+      <!-- POST 01 -->
+      <div class="post-card dica-card animate animate-delay-2">
+        <div class="img-ph"><div>[Arte a ser adicionada]<br>img/img1.png</div></div>
+        <div class="post-card-header" style="padding-top: 0;">
+          <div class="post-card-num" style="color:#F0C040;">01</div>
+          <div class="post-card-meta">
+            <div class="post-card-date">06 de julho · Segunda · Dica Prática</div>
+            <div class="post-card-titulo">Férias com previsibilidade: a rotina que acalma</div>
+          </div>
+          <span class="tl-badge badge-dica" style="flex-shrink:0;">Dica Prática</span>
+        </div>
+        <div class="post-card-body">
+          <div style="font-size: 11px; color: #92600A; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">TÍTULO DA ARTE</div>
+          <div style="font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 6px; line-height: 1.3;">Férias com previsibilidade: a rotina que acalma</div>
+          <div style="font-size: 12px; font-weight: 400; color: var(--gray); margin-bottom: 12px; line-height: 1.4;">Sem escola, a rotina muda, mas não precisa sumir</div>
+          <div class="post-card-leg-label">Legenda</div>
+          <div class="post-card-legenda" id="leg1">Acabaram as aulas e... cadê a rotina?
+
+Para a criança com TEA, a previsibilidade é o que traz segurança. E nas férias, sem os horários da escola, tudo pode virar de cabeça para baixo.
+
+Como manter o equilíbrio:
+
+1️⃣ MANTENHA OS HORÁRIOS-CHAVE
+   Acordar, refeições e sono nos mesmos horários.
+   A âncora do dia continua a mesma.
+
+2️⃣ MONTE UMA ROTINA VISUAL
+   Quadro com as atividades do dia em fotos ou desenhos.
+   Ver o que vem a seguir tranquiliza.
+
+3️⃣ AVISE AS MUDANÇAS
+   Passeio, visita, viagem? Antecipe.
+   "Hoje vamos à casa da vovó depois do almoço."
+
+4️⃣ EQUILIBRE ATIVIDADE E DESCANSO
+   Nem agitação o dia todo, nem tédio.
+   Alterne momentos de estímulo e calma.
+
+💙 Férias boas também têm rotina, só que mais leve.
+
+📲 Quer ajuda para organizar a rotina de férias? Agende sua avaliação.
+
+🏥 Instituto Abraçar
+📞 WhatsApp: (94) 99114-3564
+📍 R. Araguaia, n° 20 - Rio Verde, Parauapebas – PA</div>
+        </div>
+        <div class="post-card-footer">
+          <div class="hashtags">#FériasComRotina #Rotina #Autismo #TEA #DicaPrática #Parauapebas #InstitutoAbraçar</div>
+          <button class="btn-ver" onclick="toggleLeg('leg1',this)">Ver tudo</button>
+        </div>
+      </div>
+
+      <!-- POST 02 -->
+      <div class="post-card animate animate-delay-2">
+        <div class="img-ph"><div>[Arte a ser adicionada]<br>img/img2.png</div></div>
+        <div class="post-card-header" style="padding-top: 0;">
+          <div class="post-card-num">02</div>
+          <div class="post-card-meta">
+            <div class="post-card-date">09 de julho · Quinta · Institucional</div>
+            <div class="post-card-titulo">Férias não são pausa no desenvolvimento</div>
+          </div>
+          <span class="tl-badge badge-post" style="flex-shrink:0;">Post</span>
+        </div>
+        <div class="post-card-body">
+          <div style="font-size: 11px; color: var(--blue); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">TÍTULO DA ARTE</div>
+          <div style="font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 6px; line-height: 1.3;">Férias não são pausa no desenvolvimento</div>
+          <div style="font-size: 12px; font-weight: 400; color: var(--gray); margin-bottom: 12px; line-height: 1.4;">Por que manter a terapia mesmo nas férias escolares</div>
+          <div class="post-card-leg-label">Legenda</div>
+          <div class="post-card-legenda" id="leg2">"Vamos dar um tempo na terapia nas férias?"
+
+Entendemos o desejo de descanso. Mas o desenvolvimento da criança não tira férias, e a constância é o que sustenta o progresso.
+
+### POR QUE MANTER:
+
+✓ O progresso não retrocede
+   Pausas longas podem fazer a criança perder ganhos recentes.
+
+✓ A rotina terapêutica acalma
+   Com a escola parada, a terapia vira um ponto de apoio previsível.
+
+✓ Tempo de qualidade trabalhado
+   As férias são ótimas para treinar habilidades do dia a dia.
+
+✓ Aproveitar a janela de desenvolvimento
+   Cada sessão conta no ritmo da criança.
+
+Descanso é importante, e dá para equilibrar sem interromper o cuidado.
+
+💙 Constância é o que transforma esforço em conquista.
+
+📲 Vamos planejar as férias do seu filho juntos. Fale com a gente.
+
+🏥 Instituto Abraçar
+📞 WhatsApp: (94) 99114-3564
+📍 R. Araguaia, n° 20 - Rio Verde, Parauapebas – PA</div>
+        </div>
+        <div class="post-card-footer">
+          <div class="hashtags">#Continuidade #Terapia #Autismo #TEA #DesenvolvimentoInfantil #InstitutoAbraçar #Parauapebas</div>
+          <button class="btn-ver" onclick="toggleLeg('leg2',this)">Ver tudo</button>
+        </div>
+      </div>
+
+      <!-- POST 03 -->
+      <div class="post-card dica-card animate animate-delay-3">
+        <div class="img-ph"><div>[Arte a ser adicionada]<br>img/img3.png</div></div>
+        <div class="post-card-header" style="padding-top: 0;">
+          <div class="post-card-num" style="color:#F0C040;">03</div>
+          <div class="post-card-meta">
+            <div class="post-card-date">13 de julho · Segunda · Dica Prática</div>
+            <div class="post-card-titulo">Atividades em casa para curtir as férias</div>
+          </div>
+          <span class="tl-badge badge-dica" style="flex-shrink:0;">Dica Prática</span>
+        </div>
+        <div class="post-card-body">
+          <div style="font-size: 11px; color: #92600A; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">TÍTULO DA ARTE</div>
+          <div style="font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 6px; line-height: 1.3;">Atividades em casa para curtir as férias</div>
+          <div style="font-size: 12px; font-weight: 400; color: var(--gray); margin-bottom: 12px; line-height: 1.4;">Brincadeiras simples que divertem e desenvolvem</div>
+          <div class="post-card-leg-label">Legenda</div>
+          <div class="post-card-legenda" id="leg3">As férias chegaram e nem sempre dá para sair de casa todos os dias.
+
+A boa notícia é que a casa também pode ser um ótimo lugar para brincar, gastar energia e desenvolver habilidades.
+
+Ideias que funcionam:
+
+1️⃣ CIRCUITO DE ALMOFADAS
+   Pular, engatinhar, equilibrar.
+   Trabalha o corpo e a coordenação.
+
+2️⃣ CAÇA AO TESOURO
+   Esconda objetos e dê pistas.
+   Estimula atenção e linguagem.
+
+3️⃣ MASSINHA E TEXTURAS
+   Amassar, rolar, modelar.
+   Ótimo para o sensorial e a coordenação fina.
+
+4️⃣ HORA DA MÚSICA
+   Cantar, dançar e imitar gestos.
+   Desenvolve ritmo, imitação e vínculo.
+
+💙 O tempo junto é o que transforma a brincadeira em desenvolvimento.
+
+📲 Quer mais ideias para o dia a dia? Conheça o nosso trabalho.
+
+🏥 Instituto Abraçar
+📞 WhatsApp: (94) 99114-3564
+📍 R. Araguaia, n° 20 - Rio Verde, Parauapebas – PA</div>
+        </div>
+        <div class="post-card-footer">
+          <div class="hashtags">#FériasEmCasa #BrincarEDesenvolver #Sensorial #Autismo #TEA #DicaPrática #Parauapebas #InstitutoAbraçar</div>
+          <button class="btn-ver" onclick="toggleLeg('leg3',this)">Ver tudo</button>
+        </div>
+      </div>
+
+      <!-- POST 04 -->
+      <div class="post-card animate animate-delay-3">
+        <div class="img-ph"><div>[Arte a ser adicionada]<br>img/img4.png</div></div>
+        <div class="post-card-header" style="padding-top: 0;">
+          <div class="post-card-num">04</div>
+          <div class="post-card-meta">
+            <div class="post-card-date">16 de julho · Quinta · Institucional</div>
+            <div class="post-card-titulo">O que a criança conquista na terapia merece fazer parte da vida</div>
+          </div>
+          <span class="tl-badge badge-post" style="flex-shrink:0;">Post</span>
+        </div>
+        <div class="post-card-body">
+          <div style="font-size: 11px; color: var(--blue); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">TÍTULO DA ARTE</div>
+          <div style="font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 6px; line-height: 1.3;">O que a criança conquista na terapia merece fazer parte da vida</div>
+          <div style="font-size: 12px; font-weight: 400; color: var(--gray); margin-bottom: 12px; line-height: 1.4;">Porque o desenvolvimento acontece nos pequenos momentos do dia a dia</div>
+          <div class="post-card-leg-label">Legenda</div>
+          <div class="post-card-legenda" id="leg4">Cada palavra nova, cada gesto, cada pequena conquista alcançada na terapia tem um propósito muito maior: estar presente na vida da criança.
+
+A clínica é um espaço de aprendizado, acolhimento e possibilidades. Mas é em casa, durante uma brincadeira, na hora das refeições, no passeio em família ou na escola que essas habilidades ganham significado.
+
+É por isso que valorizamos tanto a generalização: ajudar a criança a levar o que aprende para os ambientes onde sua vida realmente acontece.
+
+💙 A família não precisa fazer isso sozinha. Ela é acolhida, orientada e acompanhada durante todo o processo.
+
+🏡 Pequenas oportunidades do cotidiano se transformam em momentos de aprendizado.
+
+🤝 Cada orientação fortalece a confiança dos cuidadores e cria novas possibilidades de interação.
+
+🌱 E, pouco a pouco, as conquistas deixam de acontecer apenas na terapia e passam a fazer parte da rotina, promovendo mais autonomia, participação e qualidade de vida.
+
+Acreditamos que os melhores resultados nascem quando família e equipe caminham juntas, respeitando o tempo, a singularidade e a história de cada criança.
+
+Porque, para nós, desenvolvimento não é apenas aprender uma habilidade. É viver cada conquista com mais autonomia, afeto e pertencimento.
+
+📲 Estamos aqui para caminhar ao lado da sua família, celebrando cada passo dessa jornada.
+
+🏥 Instituto Abraçar
+📞 WhatsApp: (94) 99114-3564
+📍 R. Araguaia, n° 20 - Rio Verde, Parauapebas – PA</div>
+        </div>
+        <div class="post-card-footer">
+          <div class="hashtags">#Generalização #DesenvolvimentoInfantil #Família #Autismo #TEA #InstitutoAbraçar #Parauapebas</div>
+          <button class="btn-ver" onclick="toggleLeg('leg4',this)">Ver tudo</button>
+        </div>
+      </div>
+
+      <!-- POST 05 -->
+      <div class="post-card dica-card animate animate-delay-4">
+        <div class="img-ph"><div>[Arte a ser adicionada]<br>img/img5.png</div></div>
+        <div class="post-card-header" style="padding-top: 0;">
+          <div class="post-card-num" style="color:#F0C040;">05</div>
+          <div class="post-card-meta">
+            <div class="post-card-date">20 de julho · Segunda · Dia do Amigo</div>
+            <div class="post-card-titulo">Dia do Amigo: ajudando seu filho a se conectar</div>
+          </div>
+          <span class="tl-badge badge-dica" style="flex-shrink:0;">Dica Prática</span>
+        </div>
+        <div class="post-card-body">
+          <div style="font-size: 11px; color: #92600A; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">TÍTULO DA ARTE</div>
+          <div style="font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 6px; line-height: 1.3;">Dia do Amigo: ajudando seu filho a se conectar</div>
+          <div style="font-size: 12px; font-weight: 400; color: var(--gray); margin-bottom: 12px; line-height: 1.4;">Amizade também se aprende, um passo de cada vez</div>
+          <div class="post-card-leg-label">Legenda</div>
+          <div class="post-card-legenda" id="leg5">Hoje é Dia do Amigo! 🤝
+
+Fazer amizades pode ser desafiador para a criança com TEA. Mas habilidades sociais se ensinam, com paciência e prática.
+
+Como ajudar:
+
+1️⃣ COMECE PEQUENO
+   Uma criança de cada vez, em ambiente tranquilo.
+   Grupos grandes podem sobrecarregar.
+
+2️⃣ ENSINE NA PRÁTICA
+   "Oi, posso brincar?" Treinem juntos antes.
+   O que é previsível assusta menos.
+
+3️⃣ USE OS INTERESSES DELA
+   Brincadeiras com o tema favorito aproximam.
+   O interesse em comum cria conexão.
+
+4️⃣ VALORIZE CADA TENTATIVA
+   Dividir um brinquedo já é um grande passo.
+   Celebre o esforço, não só o resultado.
+
+💙 Toda amizade começa com um pequeno gesto. E todo gesto pode ser ensinado.
+
+📲 Quer trabalhar as habilidades sociais do seu filho? Agende sua avaliação.
+
+🏥 Instituto Abraçar
+📞 WhatsApp: (94) 99114-3564
+📍 R. Araguaia, n° 20 - Rio Verde, Parauapebas – PA</div>
+        </div>
+        <div class="post-card-footer">
+          <div class="hashtags">#DiaDoAmigo #HabilidadesSociais #Amizade #Autismo #TEA #Parauapebas #InstitutoAbraçar</div>
+          <button class="btn-ver" onclick="toggleLeg('leg5',this)">Ver tudo</button>
+        </div>
+      </div>
+
+      <!-- POST 06 -->
+      <div class="post-card animate animate-delay-4">
+        <div class="img-ph"><div>[Arte a ser adicionada]<br>img/img6.png</div></div>
+        <div class="post-card-header" style="padding-top: 0;">
+          <div class="post-card-num">06</div>
+          <div class="post-card-meta">
+            <div class="post-card-date">23 de julho · Quinta · Institucional</div>
+            <div class="post-card-titulo">Sinais que merecem um olhar atento</div>
+          </div>
+          <span class="tl-badge badge-post" style="flex-shrink:0;">Post</span>
+        </div>
+        <div class="post-card-body">
+          <div style="font-size: 11px; color: var(--blue); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">TÍTULO DA ARTE</div>
+          <div style="font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 6px; line-height: 1.3;">Sinais que merecem um olhar atento</div>
+          <div style="font-size: 12px; font-weight: 400; color: var(--gray); margin-bottom: 12px; line-height: 1.4;">Na dúvida, avaliar é sempre o melhor caminho</div>
+          <div class="post-card-leg-label">Legenda</div>
+          <div class="post-card-legenda" id="leg6">Toda criança tem o seu ritmo. Mas alguns sinais merecem atenção. E quanto antes, melhor.
+
+### FIQUE ATENTO SE A CRIANÇA:
+
+👀 Evita o contato visual
+   Dificuldade em olhar nos olhos com frequência.
+
+🗣️ Demora para falar
+   Atraso na fala ou perda de palavras já aprendidas.
+
+🔁 Repete movimentos
+   Balançar as mãos, girar objetos, repetir falas.
+
+🙅 Reage intensamente a sons ou texturas
+   Sensibilidade fora do comum a estímulos.
+
+🤝 Tem dificuldade de interagir
+   Pouco interesse em brincar ou se conectar com outros.
+
+Esses sinais não são um diagnóstico, mas são um convite para investigar.
+
+💙 Observar com carinho é o primeiro passo do cuidado.
+
+📲 Notou algum sinal? Agende uma avaliação. Informação nunca é exagero.
+
+🏥 Instituto Abraçar
+📞 WhatsApp: (94) 99114-3564
+📍 R. Araguaia, n° 20 - Rio Verde, Parauapebas – PA</div>
+        </div>
+        <div class="post-card-footer">
+          <div class="hashtags">#SinaisDeAlerta #DiagnósticoPrecoce #Autismo #TEA #DesenvolvimentoInfantil #InstitutoAbraçar #Parauapebas</div>
+          <button class="btn-ver" onclick="toggleLeg('leg6',this)">Ver tudo</button>
+        </div>
+      </div>
+
+      <!-- POST 07 -->
+      <div class="post-card dica-card animate animate-delay-4">
+        <div class="img-ph"><div>[Arte a ser adicionada]<br>img/img7.png</div></div>
+        <div class="post-card-header" style="padding-top: 0;">
+          <div class="post-card-num" style="color:#F0C040;">07</div>
+          <div class="post-card-meta">
+            <div class="post-card-date">27 de julho · Segunda · Dica Prática</div>
+            <div class="post-card-titulo">Voltando às aulas sem sufoco</div>
+          </div>
+          <span class="tl-badge badge-dica" style="flex-shrink:0;">Dica Prática</span>
+        </div>
+        <div class="post-card-body">
+          <div style="font-size: 11px; color: #92600A; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">TÍTULO DA ARTE</div>
+          <div style="font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 6px; line-height: 1.3;">Voltando às aulas sem sufoco</div>
+          <div style="font-size: 12px; font-weight: 400; color: var(--gray); margin-bottom: 12px; line-height: 1.4;">Preparando a retomada da rotina escolar</div>
+          <div class="post-card-leg-label">Legenda</div>
+          <div class="post-card-legenda" id="leg7">As férias estão acabando e a escola está voltando. Para a criança com TEA, essa transição pede preparo.
+
+Como facilitar a volta:
+
+1️⃣ RETOME OS HORÁRIOS AOS POUCOS
+   Ajuste o sono e as refeições dias antes.
+   A mudança gradual pesa menos.
+
+2️⃣ RELEMBRE A ESCOLA
+   Fale do ambiente, da professora, dos colegas.
+   Mostre fotos, se tiver.
+
+3️⃣ ANTECIPE O PRIMEIRO DIA
+   "Segunda você volta para a escola."
+   Saber o que vem traz segurança.
+
+4️⃣ RETOME A ROTINA VISUAL
+   Volte com o quadro de atividades do dia.
+   A previsibilidade reduz a ansiedade.
+
+💙 Toda transição é mais leve quando a criança se sente preparada.
+
+📲 Precisa de apoio na volta às aulas? Fale com a nossa equipe.
+
+🏥 Instituto Abraçar
+📞 WhatsApp: (94) 99114-3564
+📍 R. Araguaia, n° 20 - Rio Verde, Parauapebas – PA</div>
+        </div>
+        <div class="post-card-footer">
+          <div class="hashtags">#VoltaÀsAulas #Transições #Rotina #Autismo #TEA #DicaPrática #Parauapebas #InstitutoAbraçar</div>
+          <button class="btn-ver" onclick="toggleLeg('leg7',this)">Ver tudo</button>
+        </div>
+      </div>
+
+      <!-- POST 08 - ESPECIAL -->
+      <div class="post-card mae-card animate animate-delay-4">
+        <div class="img-ph"><div>[Arte a ser adicionada]<br>img/img8.png</div></div>
+        <div class="post-card-header" style="padding-top: 0;">
+          <div class="post-card-num" style="color:var(--pink-light);">08</div>
+          <div class="post-card-meta">
+            <div class="post-card-date">30 de julho · Quinta · Especial ★</div>
+            <div class="post-card-titulo">Cada pequena conquista é gigante</div>
+          </div>
+          <span class="tl-badge badge-mae" style="flex-shrink:0;">Especial</span>
+        </div>
+        <div class="post-card-body">
+          <div style="font-size: 11px; color: var(--pink); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">TÍTULO DA ARTE</div>
+          <div style="font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 6px; line-height: 1.3;">Cada pequena conquista é gigante</div>
+          <div style="font-size: 12px; font-weight: 400; color: var(--gray); margin-bottom: 12px; line-height: 1.4;">Um lembrete de fim de mês para cada família</div>
+          <div class="post-card-leg-label">Legenda</div>
+          <div class="post-card-legenda" id="leg8">No meio de tantas terapias, rotinas e desafios, é fácil esquecer de olhar para trás e ver o quanto já se avançou.
+
+Um novo alimento aceito.
+Um olhar que durou mais.
+Uma palavra nova.
+Uma birra que passou mais rápido.
+
+Pode parecer pouco para o mundo. Mas, para quem acompanha de perto, é vitória.
+
+💙 No Instituto Abraçar, a gente celebra cada passo com você. Porque sabemos o esforço que existe por trás de cada conquista.
+
+A você, família que não desiste: obrigado por confiar.
+
+Vamos juntos para mais um mês. 🤗
+
+Com carinho,
+Instituto Abraçar</div>
+        </div>
+        <div class="post-card-footer">
+          <div class="hashtags">#CadaConquistaImporta #Acolhimento #Autismo #TEA #FamíliaAtípica #InstitutoAbraçar #Parauapebas</div>
+          <button class="btn-ver" onclick="toggleLeg('leg8',this)">Ver tudo</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+function toggleLeg(id, btn) {
+  const el = document.getElementById(id);
+  el.classList.toggle('expanded');
+  btn.textContent = el.classList.contains('expanded') ? 'Fechar' : 'Ver tudo';
+}
+const animObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); animObs.unobserve(e.target); }
+  });
+}, {threshold:0.12});
+document.querySelectorAll('.animate').forEach(el => animObs.observe(el));
+</script>
+</body>
+</html>

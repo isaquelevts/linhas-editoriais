@@ -1,0 +1,1677 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arthros Medicina — Linha Editorial Junho 2026</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #F4F7FB;
+      color: #0D1B2A;
+      overflow-x: hidden;
+    }
+
+    :root {
+      --primary: #0D47A1;
+      --primary-light: #1976D2;
+      --primary-medium: #1565C0;
+      --primary-pale: #BBDEFB;
+      --primary-soft: #E3F2FD;
+      --secondary: #2E7D32;
+      --secondary-light: #4CAF50;
+      --white: #FFFFFF;
+      --dark: #0D1B2A;
+      --gray: #6B7A8D;
+      --gray-light: #F4F7FB;
+      --reel: #E65100;
+      --reel-bg: #FFF3E0;
+      --reel-border: #FFB74D;
+      --red: #C62828;
+      --red-bg: #FFEBEE;
+      --red-border: #EF9A9A;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(13, 71, 161, 0.15);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-tag {
+      font-size: 11px;
+      color: var(--gray);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .nav-month {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--primary);
+      background: var(--primary-soft);
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    .progress-bar {
+      position: fixed;
+      top: 56px;
+      left: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.2s;
+      z-index: 99;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: var(--dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(198, 40, 40, 0.30) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      right: -80px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(25, 118, 210, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: rgba(198, 40, 40, 0.22);
+      color: #EF9A9A;
+      font-size: 11px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 20px;
+      border: 1px solid rgba(239, 154, 154, 0.35);
+      margin-bottom: 2rem;
+      animation: fadeUp 0.7s ease both;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(42px, 8vw, 86px);
+      color: var(--white);
+      line-height: 1.0;
+      letter-spacing: -2px;
+      margin-bottom: 1.25rem;
+      animation: fadeUp 0.7s 0.12s ease both;
+    }
+
+    .hero-title span {
+      color: var(--primary-light);
+    }
+
+    .hero-sub {
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.45);
+      max-width: 480px;
+      margin: 0 auto 3rem;
+      line-height: 1.7;
+      font-weight: 300;
+      animation: fadeUp 0.7s 0.24s ease both;
+    }
+
+    .hero-stats {
+      display: inline-flex;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      overflow: hidden;
+      animation: fadeUp 0.7s 0.36s ease both;
+    }
+
+    .hero-stat {
+      padding: 1.25rem 2rem;
+      text-align: center;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .hero-stat:last-child {
+      border-right: none;
+    }
+
+    .hero-stat-val {
+      font-family: 'Playfair Display', serif;
+      font-size: 30px;
+      color: var(--white);
+      display: block;
+    }
+
+    .hero-stat-lbl {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.35);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      animation: fadeUp 0.7s 0.5s ease both;
+    }
+
+    .scroll-hint span {
+      font-size: 9px;
+      color: rgba(255, 255, 255, 0.25);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .arrow-down {
+      width: 18px;
+      height: 18px;
+      border-right: 1.5px solid rgba(255, 255, 255, 0.25);
+      border-bottom: 1.5px solid rgba(255, 255, 255, 0.25);
+      transform: rotate(45deg);
+      animation: bounce 1.6s infinite;
+    }
+
+    /* SECTIONS */
+    .section {
+      padding: 80px 2rem;
+    }
+
+    .section-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--primary);
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--primary-pale);
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4vw, 46px);
+      color: var(--dark);
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+      margin-bottom: 2.5rem;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    /* BADGES */
+    .tl-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 10px;
+      font-weight: 500;
+      padding: 3px 10px;
+      border-radius: 20px;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-post {
+      background: var(--primary-soft);
+      color: var(--primary);
+    }
+
+    .badge-reel {
+      background: var(--reel-bg);
+      color: var(--reel);
+      border: 1px solid var(--reel-border);
+    }
+
+    .badge-data {
+      background: #FFF8E6;
+      color: #92600A;
+      border: 1px solid #FFE4A0;
+    }
+
+    .badge-engage {
+      background: #E3F2FD;
+      color: #1565C0;
+      border: 1px solid #90CAF9;
+    }
+
+    /* CALENDÁRIO VISUAL */
+    #overview {
+      background: var(--white);
+    }
+
+    .cal-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    .cal-grid-wrap {}
+
+    .cal-legend {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .cal-leg-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--gray);
+    }
+
+    .cal-leg-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .cal-month {
+      background: var(--gray-light);
+      border-radius: 16px;
+      padding: 1.25rem;
+    }
+
+    .cal-month-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--dark);
+      text-align: center;
+      margin-bottom: 0.75rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .cal-days-header {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 2px;
+      margin-bottom: 4px;
+    }
+
+    .cal-days-header span {
+      font-size: 10px;
+      color: var(--gray);
+      text-align: center;
+      font-weight: 500;
+      padding: 4px 0;
+    }
+
+    .cal-days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 2px;
+    }
+
+    .cal-day {
+      min-height: 48px;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 5px 3px 3px;
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--gray);
+      background: transparent;
+      position: relative;
+    }
+
+    .cal-day.empty {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .cal-day-num {
+      font-size: 12px;
+      line-height: 1;
+      margin-bottom: 3px;
+    }
+
+    .cal-day.has-post .cal-day-num {
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    .cal-day.has-reel .cal-day-num {
+      color: var(--reel);
+      font-weight: 500;
+    }
+
+    .cal-day.has-both .cal-day-num {
+      color: var(--dark);
+      font-weight: 500;
+    }
+
+    .cal-day.has-post {
+      background: var(--primary-soft);
+      border-radius: 8px;
+    }
+
+    .cal-day.has-reel {
+      background: var(--reel-bg);
+      border-radius: 8px;
+    }
+
+    .cal-day.has-data {
+      border: 2px solid #F0C040;
+    }
+
+    .cal-pip {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      margin: 1px;
+      flex-shrink: 0;
+    }
+
+    .cal-pips {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1px;
+    }
+
+    .pip-post {
+      background: var(--primary);
+    }
+
+    .pip-reel {
+      background: var(--reel);
+    }
+
+    .cal-day-label {
+      font-size: 8px;
+      font-weight: 500;
+      text-align: center;
+      line-height: 1.2;
+      color: var(--gray);
+    }
+
+    .cal-day.has-post .cal-day-label {
+      color: var(--primary);
+    }
+
+    .cal-day.has-reel .cal-day-label {
+      color: var(--reel);
+    }
+
+    .cal-day.has-both .cal-day-label {
+      color: var(--dark);
+    }
+
+    /* TIMELINE */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .tl-item {
+      display: grid;
+      grid-template-columns: 90px 1px 1fr;
+      gap: 0 1.25rem;
+      align-items: stretch;
+      min-height: 56px;
+    }
+
+    .tl-date {
+      text-align: right;
+      padding: 0.85rem 0;
+    }
+
+    .tl-day {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: var(--dark);
+      line-height: 1;
+    }
+
+    .tl-weekday {
+      font-size: 10px;
+      color: var(--gray);
+      margin-top: 2px;
+    }
+
+    .tl-line {
+      background: var(--primary-pale);
+      position: relative;
+    }
+
+    .tl-line::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: 2px solid var(--white);
+      box-shadow: 0 0 0 2px var(--primary-pale);
+    }
+
+    .tl-line.orange-line {
+      background: var(--reel-bg);
+    }
+
+    .tl-line.orange-line::before {
+      background: var(--reel);
+      box-shadow: 0 0 0 2px var(--reel-bg);
+    }
+
+    .tl-content {
+      padding: 0.75rem 0;
+    }
+
+    .tl-titulo {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--dark);
+      line-height: 1.3;
+    }
+
+    .tl-formato {
+      font-size: 11px;
+      color: var(--gray);
+      font-weight: 300;
+      margin-top: 2px;
+    }
+
+    /* POSTS GRID */
+    #posts {
+      background: var(--gray-light);
+    }
+
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+
+    .post-card {
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid transparent;
+      transition: all 0.25s;
+    }
+
+    .post-card:hover {
+      border-color: var(--primary-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(13, 71, 161, 0.1);
+    }
+
+    .post-card-header {
+      padding: 1.25rem 1.5rem 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .post-card-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      color: var(--primary-pale);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .post-card-meta {
+      flex: 1;
+    }
+
+    .post-card-date {
+      font-size: 10px;
+      color: var(--gray);
+      font-weight: 400;
+      margin-bottom: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .post-card-titulo {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--dark);
+      line-height: 1.3;
+    }
+
+    .post-card-formato {
+      font-size: 11px;
+      color: var(--gray);
+      font-weight: 300;
+      margin-top: 2px;
+    }
+
+    .post-card-art {
+      margin: 1rem 1.5rem 0;
+      background: var(--gray-light);
+      border-radius: 10px;
+      padding: 0.85rem 1rem;
+      border-left: 3px solid var(--primary);
+    }
+
+    .post-card-art-label {
+      font-size: 9px;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .post-card-art-titulo {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--dark);
+      line-height: 1.3;
+    }
+
+    .post-card-art-sub {
+      font-size: 12px;
+      color: var(--gray);
+      font-weight: 300;
+      margin-top: 2px;
+      font-style: italic;
+    }
+
+    .art-ph {
+      width: 100%;
+      margin-top: 0.75rem;
+      border-radius: 10px;
+      background: #E3E9F0;
+      min-height: 150px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #9AA7B5;
+      font-size: 11.5px;
+      text-align: center;
+      padding: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .post-card-body {
+      padding: 0.85rem 1.5rem 0;
+    }
+
+    .post-card-leg-label {
+      font-size: 9px;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+
+    .post-card-legenda {
+      font-size: 12.5px;
+      color: #444;
+      line-height: 1.7;
+      font-weight: 300;
+      background: var(--gray-light);
+      border-radius: 10px;
+      padding: 1rem;
+      white-space: pre-line;
+      max-height: 180px;
+      overflow: hidden;
+      position: relative;
+      transition: max-height 0.4s ease;
+    }
+
+    .post-card-legenda.expanded {
+      max-height: 2000px;
+    }
+
+    .post-card-legenda::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 48px;
+      background: linear-gradient(transparent, var(--gray-light));
+      border-radius: 0 0 10px 10px;
+      transition: opacity 0.3s;
+    }
+
+    .post-card-legenda.expanded::after {
+      opacity: 0;
+    }
+
+    .post-card-footer {
+      padding: 0.75rem 1.5rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .hashtags {
+      font-size: 11px;
+      color: var(--primary-light);
+      font-weight: 300;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      max-width: 68%;
+    }
+
+    .btn-ver {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--primary);
+      background: var(--primary-soft);
+      border: none;
+      border-radius: 20px;
+      padding: 5px 14px;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background 0.2s;
+    }
+
+    .btn-ver:hover {
+      background: var(--primary-pale);
+    }
+
+    .post-card.data-card {
+      border-top: 3px solid #F0C040;
+    }
+
+    .post-card.engage-card {
+      border-top: 3px solid #1565C0;
+    }
+
+    /* FIM */
+    #fim {
+      background: var(--dark);
+      min-height: 40vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #fim::before {
+      content: '';
+      position: absolute;
+      bottom: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(13, 71, 161, 0.28) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .fim-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      color: var(--white);
+      letter-spacing: -1.5px;
+    }
+
+    .fim-logo span {
+      color: var(--primary-light);
+    }
+
+    .fim-sub {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.3);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-top: 0.5rem;
+    }
+
+    /* SIDE NAV */
+    .slide-nav {
+      position: fixed;
+      right: 1.25rem;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 99;
+    }
+
+    .sn-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.15);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .sn-dot.active {
+      background: var(--primary);
+      transform: scale(1.5);
+    }
+
+    /* ANIMATE */
+    .animate {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+
+    .animate.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .animate-delay-1 {
+      transition-delay: 0.08s;
+    }
+
+    .animate-delay-2 {
+      transition-delay: 0.16s;
+    }
+
+    .animate-delay-3 {
+      transition-delay: 0.24s;
+    }
+
+    .animate-delay-4 {
+      transition-delay: 0.32s;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(22px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: rotate(45deg) translateY(0)
+      }
+
+      50% {
+        transform: rotate(45deg) translateY(5px)
+      }
+    }
+
+    @media(max-width:768px) {
+
+      .posts-grid,
+      .cal-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-stats {
+        flex-direction: column;
+      }
+
+      .hero-stat {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      nav .nav-right {
+        display: none;
+      }
+
+      .slide-nav {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="progress-bar" id="progressBar"></div>
+  <div class="slide-nav" id="slideNav"></div>
+
+  <nav>
+    <div class="nav-logo">Arthros Medicina</div>
+    <div class="nav-right">
+      <span class="nav-tag">Linha Editorial</span>
+      <span class="nav-month">Junho 2026</span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero" class="hero">
+    <div style="position:relative;z-index:1;width:100%;">
+      <div class="hero-tag">🟥 Junho Vermelho · Linha Editorial 2026</div>
+      <h1 class="hero-title">Calendário<br><span>Editorial</span></h1>
+      <p class="hero-sub">8 posts prioritários distribuídos ao longo do mês de junho, com artes, legendas e hashtags
+        prontas para publicar. Junho Vermelho — mês de incentivo à doação de sangue.</p>
+      <div class="hero-stats">
+        <div class="hero-stat"><span class="hero-stat-val">8</span><span class="hero-stat-lbl">Posts</span></div>
+        <div class="hero-stat"><span class="hero-stat-val">4</span><span class="hero-stat-lbl">Datas da Saúde</span>
+        </div>
+        <div class="hero-stat"><span class="hero-stat-val">14/06</span><span class="hero-stat-lbl">Doador de
+            Sangue</span></div>
+      </div>
+    </div>
+    <div class="scroll-hint"><span>Scroll</span>
+      <div class="arrow-down"></div>
+    </div>
+  </section>
+
+  <!-- VISÃO GERAL -->
+  <section id="overview" class="section">
+    <div class="section-inner">
+      <div class="section-label animate">01 — Visão Geral</div>
+      <h2 class="section-title animate animate-delay-1">O mês de junho<br><em>dia a dia</em></h2>
+
+      <div class="cal-wrap">
+
+        <!-- CALENDÁRIO VISUAL -->
+        <div class="cal-grid-wrap animate animate-delay-2">
+          <div class="cal-legend">
+            <div class="cal-leg-item">
+              <div class="cal-leg-dot" style="background:var(--primary);"></div>Post
+            </div>
+            <div class="cal-leg-item">
+              <div class="cal-leg-dot" style="background:#F0C040;border:1px solid #C9A000;"></div>Data comemorativa
+            </div>
+          </div>
+          <div class="cal-month">
+            <div class="cal-month-title">Junho 2026</div>
+            <div class="cal-days-header">
+              <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
+            </div>
+            <div class="cal-days">
+              <!-- Junho 2026 começa numa segunda-feira (índice 1) -->
+              <div class="cal-day empty"></div>
+              <div class="cal-day">
+                <div class="cal-day-num">1</div>
+              </div>
+              <div class="cal-day">
+                <div class="cal-day-num">2</div>
+              </div>
+              <div class="cal-day">
+                <div class="cal-day-num">3</div>
+              </div>
+              <div class="cal-day">
+                <div class="cal-day-num">4</div>
+              </div>
+              <div class="cal-day">
+                <div class="cal-day-num">5</div>
+              </div>
+              <!-- 06 - Post #1 - Junho Vermelho -->
+              <div class="cal-day has-post has-data">
+                <div class="cal-day-num">6</div>
+                <div class="cal-pips">
+                  <div class="cal-pip pip-post"></div>
+                </div>
+                <div class="cal-day-label">Post 1</div>
+              </div>
+              <!-- 07 - Post #2 - Segurança Alimentar -->
+              <div class="cal-day has-post has-data">
+                <div class="cal-day-num">7</div>
+                <div class="cal-pips">
+                  <div class="cal-pip pip-post"></div>
+                </div>
+                <div class="cal-day-label">Post 2</div>
+              </div>
+              <div class="cal-day">
+                <div class="cal-day-num">8</div>
+              </div>
+              <!-- 09 - Post #3 - Imunização -->
+              <div class="cal-day has-post has-data">
+                <div class="cal-day-num">9</div>
+                <div class="cal-pips">
+                  <div class="cal-pip pip-post"></div>
+                </div>
+                <div class="cal-day-label">Post 3</div>
+              </div>
+              <div class="cal-day">
+                <div class="cal-day-num">10</div>
+              </div>
+              <div class="cal-day">
+                <div class="cal-day-num">11</div>
+              </div>
+              <!-- 12 - Post #4 - Trabalho Infantil -->
+              <div class="cal-day has-post has-data">
+                <div class="cal-day-num">12</div>
+                <div class="cal-pips">
+                  <div class="cal-pip pip-post"></div>
+                </div>
+                <div class="cal-day-label">Post 4</div>
+              </div>
+              <div class="cal-day">
+                <div class="cal-day-num">13</div>
+              </div>
+              <!-- 14 - Post #5 - Doador de Sangue -->
+              <div class="cal-day has-post has-data">
+                <div class="cal-day-num">14</div>
+                <div class="cal-pips">
+                  <div class="cal-pip pip-post"></div>
+                </div>
+                <div class="cal-day-label">Post 5</div>
+              </div>
+              <div class="cal-day">
+                <div class="cal-day-num">15</div>
+              </div>
+              <div class="cal-day">
+                <div class="cal-day-num">16</div>
+              </div>
+              <!-- 17 - Post #6 - Ortopedia -->
+              <div class="cal-day has-post">
+                <div class="cal-day-num">17</div>
+                <div class="cal-pips">
+                  <div class="cal-pip pip-post"></div>
+                </div>
+                <div class="cal-day-label">Post 6</div>
+              </div>
+              <div class="cal-day">
+                <div class="cal-day-num">18</div>
+              </div>
+              <div class="cal-day">
+                <div class="cal-day-num">19</div>
+              </div>
+              <div class="cal-day">
+                <div class="cal-day-num">20</div>
+              </div>
+              <!-- 21 - Post #7 - Dermatologia -->
+              <div class="cal-day has-post">
+                <div class="cal-day-num">21</div>
+                <div class="cal-pips">
+                  <div class="cal-pip pip-post"></div>
+                </div>
+                <div class="cal-day-label">Post 7</div>
+              </div>
+              <div class="cal-day">
+                <div class="cal-day-num">22</div>
+              </div>
+              <div class="cal-day">
+                <div class="cal-day-num">23</div>
+              </div>
+              <!-- 24 - Post #8 - Ginecologia -->
+              <div class="cal-day has-post">
+                <div class="cal-day-num">24</div>
+                <div class="cal-pips">
+                  <div class="cal-pip pip-post"></div>
+                </div>
+                <div class="cal-day-label">Post 8</div>
+              </div>
+              <div class="cal-day">
+                <div class="cal-day-num">25</div>
+              </div>
+              <div class="cal-day">
+                <div class="cal-day-num">26</div>
+              </div>
+              <div class="cal-day">
+                <div class="cal-day-num">27</div>
+              </div>
+              <div class="cal-day">
+                <div class="cal-day-num">28</div>
+              </div>
+              <div class="cal-day">
+                <div class="cal-day-num">29</div>
+              </div>
+              <div class="cal-day">
+                <div class="cal-day-num">30</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TIMELINE -->
+        <div class="animate animate-delay-3">
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-date">
+                <div class="tl-day">06</div>
+                <div class="tl-weekday">Sábado · Junho Vermelho</div>
+              </div>
+              <div class="tl-line"></div>
+              <div class="tl-content"><span class="tl-badge badge-data">Post #1 · Data Comemorativa</span>
+                <div class="tl-titulo">Junho Vermelho: um mês inteiro pela vida.</div>
+                <div class="tl-formato">Arte · Campanha de Doação / Clínica Geral</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">
+                <div class="tl-day">07</div>
+                <div class="tl-weekday">Domingo · Segurança Alimentar</div>
+              </div>
+              <div class="tl-line"></div>
+              <div class="tl-content"><span class="tl-badge badge-data">Post #2 · Data Comemorativa</span>
+                <div class="tl-titulo">Dia Mundial da Segurança Alimentar.</div>
+                <div class="tl-formato">Arte · Nutrição / Endocrinologia</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">
+                <div class="tl-day">09</div>
+                <div class="tl-weekday">Terça · Dia da Imunização</div>
+              </div>
+              <div class="tl-line"></div>
+              <div class="tl-content"><span class="tl-badge badge-data">Post #3 · Data Comemorativa</span>
+                <div class="tl-titulo">Vacina é proteção em todas as idades.</div>
+                <div class="tl-formato">Arte · Vacinação / Pediatria</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">
+                <div class="tl-day">12</div>
+                <div class="tl-weekday">Sexta · Contra o Trabalho Infantil</div>
+              </div>
+              <div class="tl-line"></div>
+              <div class="tl-content"><span class="tl-badge badge-data">Post #4 · Data Comemorativa</span>
+                <div class="tl-titulo">Lugar de criança é na escola, no brincar e no cuidado.</div>
+                <div class="tl-formato">Arte · Saúde Infantil / Pediatria</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">
+                <div class="tl-day">14</div>
+                <div class="tl-weekday">Domingo · Doador de Sangue</div>
+              </div>
+              <div class="tl-line"></div>
+              <div class="tl-content"><span class="tl-badge badge-data">Post #5 · Data Comemorativa</span>
+                <div class="tl-titulo">Doar sangue é doar vida.</div>
+                <div class="tl-formato">Arte · Campanha de Doação / Junho Vermelho</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">
+                <div class="tl-day">17</div>
+                <div class="tl-weekday">Quarta</div>
+              </div>
+              <div class="tl-line"></div>
+              <div class="tl-content"><span class="tl-badge badge-post">Post #6 · Educativo</span>
+                <div class="tl-titulo">Dor no joelho não é sinal de idade, é sinal de avaliação.</div>
+                <div class="tl-formato">Arte · Ortopedia</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">
+                <div class="tl-day">21</div>
+                <div class="tl-weekday">Domingo</div>
+              </div>
+              <div class="tl-line"></div>
+              <div class="tl-content"><span class="tl-badge badge-post">Post #7 · Educativo</span>
+                <div class="tl-titulo">Tempo seco em Parauapebas? Sua pele é a primeira a sentir.</div>
+                <div class="tl-formato">Arte · Dermatologia</div>
+              </div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">
+                <div class="tl-day">24</div>
+                <div class="tl-weekday">Quarta</div>
+              </div>
+              <div class="tl-line"></div>
+              <div class="tl-content"><span class="tl-badge badge-post">Post #8 · Educativo</span>
+                <div class="tl-titulo">Cuidar de você é prioridade o ano inteiro.</div>
+                <div class="tl-formato">Arte · Ginecologia</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- POSTS -->
+  <section id="posts" class="section">
+    <div class="section-inner">
+      <div class="section-label animate">02 — Posts Prioritários</div>
+      <h2 class="section-title animate animate-delay-1">8 posts com arte, legenda e hashtags<br><em>De 06/06 a
+          24/06</em></h2>
+      <div class="posts-grid">
+
+        <!-- POST 1 - JUNHO VERMELHO -->
+        <div class="post-card data-card animate animate-delay-2">
+          <div class="post-card-header">
+            <div class="post-card-num">01</div>
+            <div class="post-card-meta">
+              <div class="post-card-date">06 de Junho · Sábado · Junho Vermelho</div>
+              <div class="post-card-titulo">Junho Vermelho: um mês inteiro pela vida.</div>
+            </div>
+            <span class="tl-badge badge-data" style="flex-shrink:0;">Data</span>
+          </div>
+          <div class="post-card-art">
+            <div class="post-card-art-label">Sugestão de Arte</div>
+            <div class="post-card-art-titulo">Junho Vermelho: um mês inteiro pela vida.</div>
+            <div class="post-card-art-sub">A doação de sangue salva vidas o ano todo — e junho é o mês de reforçar essa corrente</div>
+            <img src="img/img1.jpg" alt="Post 1 - Junho Vermelho" style="width:100%; margin-top:0.75rem; border-radius:10px;">
+          </div>
+          <div class="post-card-body">
+            <div class="post-card-leg-label">Legenda</div>
+            <div class="post-card-legenda" id="legjv">Junho Vermelho: um mês inteiro pela vida. 🟥
+
+Você sabia que os estoques dos bancos de sangue costumam cair justamente nos meses mais frios e nos períodos de festas e férias? É por isso que existe o Junho Vermelho — um movimento nacional para conscientizar e incentivar a doação de sangue.
+
+Doar é um gesto simples que tem um impacto enorme:
+
+🩸 Uma única doação pode salvar até 4 vidas
+🏥 Cirurgias, partos, acidentes e tratamentos dependem de sangue disponível
+🔁 Os estoques precisam ser repostos o ano inteiro, não só em emergências
+❤️ Doadores regulares são o que mantém a corrente do bem funcionando
+
+Quem pode doar? Em geral, pessoas entre 16 e 69 anos, com mais de 50 kg, bem alimentadas e descansadas. Leve um documento com foto e verifique o hemocentro mais próximo.
+
+Neste Junho Vermelho, a Arthros se une à causa: cuidar da saúde também é cuidar de quem está ao nosso redor.
+
+❤️ Faça parte dessa corrente. E para manter sua saúde sempre em dia, conte com a Arthros — agende pelo WhatsApp, link na bio.
+
+Arthros Especialidades Médicas — Parauapebas.
+
+#ArthrosMedicina #JunhoVermelho #DoaçãoDeSangue #DoarSangueSalvaVidas #CorrenteDoBem #Parauapebas #SaúdeQueCuida</div>
+          </div>
+          <div class="post-card-footer">
+            <div class="hashtags">#JunhoVermelho #DoaçãoDeSangue #Parauapebas</div>
+            <button class="btn-ver" onclick="toggleLeg('legjv',this)">Ver tudo</button>
+          </div>
+        </div>
+
+        <!-- POST 2 - SEGURANÇA ALIMENTAR -->
+        <div class="post-card data-card animate animate-delay-2">
+          <div class="post-card-header">
+            <div class="post-card-num">02</div>
+            <div class="post-card-meta">
+              <div class="post-card-date">07 de Junho · Domingo · Dia Mundial da Segurança Alimentar</div>
+              <div class="post-card-titulo">Dia Mundial da Segurança Alimentar.</div>
+            </div>
+            <span class="tl-badge badge-data" style="flex-shrink:0;">Data</span>
+          </div>
+          <div class="post-card-art">
+            <div class="post-card-art-label">Sugestão de Arte</div>
+            <div class="post-card-art-titulo">Dia Mundial da Segurança Alimentar.</div>
+            <div class="post-card-art-sub">Alimentação saudável previne doenças, equilibra o metabolismo e começa por escolhas simples no dia a dia.</div>
+            <img src="img/img2.png" alt="Post 2 - Segurança Alimentar" style="width:100%; margin-top:0.75rem; border-radius:10px;">
+          </div>
+          <div class="post-card-body">
+            <div class="post-card-leg-label">Legenda</div>
+            <div class="post-card-legenda" id="leg1">O que está no seu prato também é cuidado com a saúde.
+
+              No Dia Mundial da Segurança Alimentar, vale lembrar: alimentação saudável não é dieta da moda nem
+              privação. É equilíbrio, qualidade e escolhas conscientes no dia a dia.
+
+              O que você come influencia diretamente:
+
+              🥗 O funcionamento do seu metabolismo
+              ⚖️ O controle do peso e da glicemia
+              ❤️ A saúde do coração e dos vasos
+              🛡️ A prevenção de doenças crônicas
+              😴 Sua energia, humor e qualidade do sono
+
+              Pequenas mudanças — comer mais alimentos in natura, reduzir ultraprocessados e manter horários regulares —
+              já fazem grande diferença ao longo do tempo.
+
+              E quando há acompanhamento profissional, os resultados são mais seguros e duradouros.
+
+              Na Arthros, você conta com Nutrição e Endocrinologia para cuidar da sua alimentação e do seu equilíbrio
+              metabólico de forma individualizada.
+
+              📲 Quer ajustar sua alimentação com acompanhamento profissional? Agende sua consulta pelo WhatsApp — link
+              na bio.
+
+              Arthros Especialidades Médicas — Parauapebas.
+
+              #ArthrosMedicina #SegurançaAlimentar #Nutrição #Endocrinologia #AlimentaçãoSaudável #Parauapebas
+              #SaúdeMetabólica</div>
+          </div>
+          <div class="post-card-footer">
+            <div class="hashtags">#SegurançaAlimentar #Nutrição #Parauapebas</div>
+            <button class="btn-ver" onclick="toggleLeg('leg1',this)">Ver tudo</button>
+          </div>
+        </div>
+
+        <!-- POST 3 - IMUNIZAÇÃO -->
+        <div class="post-card data-card animate animate-delay-2">
+          <div class="post-card-header">
+            <div class="post-card-num">03</div>
+            <div class="post-card-meta">
+              <div class="post-card-date">09 de Junho · Terça · Dia da Imunização</div>
+              <div class="post-card-titulo">Vacina é proteção em todas as idades.</div>
+            </div>
+            <span class="tl-badge badge-data" style="flex-shrink:0;">Data</span>
+          </div>
+          <div class="post-card-art">
+            <div class="post-card-art-label">Sugestão de Arte</div>
+            <div class="post-card-art-titulo">Vacina é proteção em todas as idades.</div>
+            <div class="post-card-art-sub">Manter a carteira em dia protege você, sua família e a comunidade</div>
+            <img src="img/img3.png" alt="Post 3 - Imunização" style="width:100%; margin-top:0.75rem; border-radius:10px;">
+          </div>
+          <div class="post-card-body">
+            <div class="post-card-leg-label">Legenda</div>
+            <div class="post-card-legenda" id="leg2">Vacina é proteção em todas as idades.
+
+              No Dia da Imunização, reforçamos uma das ferramentas mais poderosas da medicina: a vacinação. Ela não
+              protege só quem se vacina — protege também quem está ao redor.
+
+              Manter a carteira de vacinação em dia é essencial em todas as fases da vida:
+
+              👶 Crianças: proteção desde os primeiros meses
+              🧒 Adolescentes: reforços importantes nessa fase
+              🧑 Adultos: vacinas que muitos esquecem de atualizar
+              👵 Idosos: proteção redobrada contra gripe e pneumonia
+
+              Doenças que pareciam controladas podem voltar quando a cobertura vacinal cai. Por isso, conferir e
+              atualizar a caderneta é um ato de cuidado com você e com toda a comunidade.
+
+              Na Arthros, nossa equipe ajuda você a verificar sua situação vacinal e orienta sobre os reforços
+              necessários para cada idade.
+
+              📲 Confira sua situação vacinal com a nossa equipe. Agende pelo WhatsApp — link na bio.
+
+              Arthros Especialidades Médicas — Parauapebas.
+
+              #ArthrosMedicina #Imunização #Vacinação #Pediatria #VacinaProtege #Parauapebas #SaúdePreventiva</div>
+          </div>
+          <div class="post-card-footer">
+            <div class="hashtags">#Imunização #Vacinação #Parauapebas</div>
+            <button class="btn-ver" onclick="toggleLeg('leg2',this)">Ver tudo</button>
+          </div>
+        </div>
+
+        <!-- POST 4 - TRABALHO INFANTIL -->
+        <div class="post-card data-card animate animate-delay-3">
+          <div class="post-card-header">
+            <div class="post-card-num">04</div>
+            <div class="post-card-meta">
+              <div class="post-card-date">12 de Junho · Sexta · Dia Mundial Contra o Trabalho Infantil</div>
+              <div class="post-card-titulo">Lugar de criança é na escola, no brincar e no cuidado.</div>
+            </div>
+            <span class="tl-badge badge-data" style="flex-shrink:0;">Data</span>
+          </div>
+          <div class="post-card-art">
+            <div class="post-card-art-label">Sugestão de Arte</div>
+            <div class="post-card-art-titulo">Lugar de criança é na escola, no brincar e no cuidado.</div>
+            <div class="post-card-art-sub">Infância protegida é infância saudável</div>
+            <img src="img/img4.png" alt="Post 4 - Trabalho Infantil" style="width:100%; margin-top:0.75rem; border-radius:10px;">
+          </div>
+          <div class="post-card-body">
+            <div class="post-card-leg-label">Legenda</div>
+            <div class="post-card-legenda" id="leg3">Lugar de criança é na escola, no brincar e no cuidado.
+
+              Neste 12 de junho, Dia Mundial Contra o Trabalho Infantil, a Arthros se une a essa causa. Nenhuma criança
+              deveria ter sua infância interrompida pelo trabalho.
+
+              Infância protegida é infância saudável — e isso passa também pela saúde:
+
+              🧒 Desenvolvimento físico e motor adequado
+              📚 Tempo para estudar e aprender
+              🧸 Espaço para brincar e socializar
+              🩺 Acompanhamento pediátrico em cada fase
+              ❤️ Saúde emocional preservada
+
+              O acompanhamento pediátrico regular é um dos pilares para garantir que cada criança cresça com saúde,
+              segurança e oportunidades.
+
+              Cuidar da infância hoje é construir adultos mais saudáveis amanhã.
+
+              📲 Cuide da saúde do seu filho com quem entende de infância. Agende a consulta pediátrica pelo WhatsApp —
+              link na bio.
+
+              Arthros Especialidades Médicas — Parauapebas.
+
+              #ArthrosMedicina #TrabalhoInfantilNão #Pediatria #SaúdeInfantil #InfânciaProtegida #Parauapebas</div>
+          </div>
+          <div class="post-card-footer">
+            <div class="hashtags">#Pediatria #InfânciaProtegida #Parauapebas</div>
+            <button class="btn-ver" onclick="toggleLeg('leg3',this)">Ver tudo</button>
+          </div>
+        </div>
+
+        <!-- POST 5 - DOADOR DE SANGUE -->
+        <div class="post-card data-card animate animate-delay-3">
+          <div class="post-card-header">
+            <div class="post-card-num">05</div>
+            <div class="post-card-meta">
+              <div class="post-card-date">14 de Junho · Domingo · Dia Mundial do Doador de Sangue</div>
+              <div class="post-card-titulo">Doar sangue é doar vida.</div>
+            </div>
+            <span class="tl-badge badge-data" style="flex-shrink:0;">Data</span>
+          </div>
+          <div class="post-card-art">
+            <div class="post-card-art-label">Sugestão de Arte</div>
+            <div class="post-card-art-titulo">Doar sangue é doar vida.</div>
+            <div class="post-card-art-sub">Junho Vermelho · uma doação pode beneficiar até 4 pessoas</div>
+            <img src="img/img5.jpg" alt="Post 5 - Doador de Sangue" style="width:100%; margin-top:0.75rem; border-radius:10px;">
+          </div>
+          <div class="post-card-body">
+            <div class="post-card-leg-label">Legenda</div>
+            <div class="post-card-legenda" id="leg4">Doar sangue é doar vida. ❤️
+
+              No Dia Mundial do Doador de Sangue, celebramos quem transforma um gesto simples em esperança para quem
+              mais precisa.
+
+              Você sabia?
+
+              🩸 Uma única doação pode beneficiar até 4 pessoas
+              ⏱️ O processo leva cerca de 30 minutos
+              🔁 O corpo repõe o volume doado rapidamente
+              🚑 Estoques abastecidos salvam vidas em cirurgias, acidentes e tratamentos
+
+              Doar é seguro, rápido e gratuito. E o melhor: é um ato de amor que não custa nada e vale muito.
+
+              O Junho Vermelho é o mês que reforça essa corrente do bem. Se você pode doar, doe. Se conhece alguém que
+              pode, convide.
+
+              E lembre-se: para doar — e para a vida toda — manter a saúde em dia também é fundamental.
+
+              ❤️ Seja um doador. E para cuidar da sua saúde de perto, fale com a Arthros pelo WhatsApp — link na bio.
+
+              Arthros Especialidades Médicas — Parauapebas.
+
+              #ArthrosMedicina #JunhoVermelho #DoaçãoDeSangue #DoarÉViver #DiaDoDoador #Parauapebas</div>
+          </div>
+          <div class="post-card-footer">
+            <div class="hashtags">#JunhoVermelho #DoaçãoDeSangue #Parauapebas</div>
+            <button class="btn-ver" onclick="toggleLeg('leg4',this)">Ver tudo</button>
+          </div>
+        </div>
+
+        <!-- POST 6 - ORTOPEDIA -->
+        <div class="post-card animate animate-delay-4">
+          <div class="post-card-header">
+            <div class="post-card-num">06</div>
+            <div class="post-card-meta">
+              <div class="post-card-date">17 de Junho · Quarta · Educativo</div>
+              <div class="post-card-titulo">Dor no joelho não é sinal de idade, é sinal de avaliação.</div>
+            </div>
+            <span class="tl-badge badge-post" style="flex-shrink:0;">Post</span>
+          </div>
+          <div class="post-card-art">
+            <div class="post-card-art-label">Sugestão de Arte</div>
+            <div class="post-card-art-titulo">Dor no joelho não é sinal de idade, é sinal de avaliação.</div>
+            <div class="post-card-art-sub">O diagnóstico ortopédico precoce evita a cirurgia e devolve qualidade de vida
+            </div>
+            <img src="img/img6.png" alt="Post 6 - Ortopedia" style="width:100%; margin-top:0.75rem; border-radius:10px;">
+          </div>
+          <div class="post-card-body">
+            <div class="post-card-leg-label">Legenda</div>
+            <div class="post-card-legenda" id="leg5">Dor no joelho não é sinal de idade, é sinal de avaliação.
+
+              "Ah, é da idade." Quantas vezes você já ouviu (ou disse) isso? A verdade é que dor articular não deve ser
+              tratada como algo normal — em nenhuma idade.
+
+              O joelho é uma das articulações mais exigidas do corpo. Quando dói, ele está avisando que algo precisa de
+              atenção:
+
+              🦵 Desgaste da cartilagem
+              🏃 Lesões por esforço ou esporte
+              ⚖️ Sobrecarga relacionada ao peso
+              🔧 Problemas de alinhamento e postura
+
+              Na maioria dos casos, o diagnóstico ortopédico precoce evita que o problema avance — e pode, inclusive,
+              evitar a cirurgia.
+
+              Na Arthros, você encontra Ortopedia especializada para investigar a causa da sua dor e devolver seu
+              movimento e sua qualidade de vida.
+
+              Quanto antes você cuida, melhor o resultado.
+
+              📲 Não normalize a dor. Agende sua avaliação ortopédica pelo WhatsApp — link na bio.
+
+              Arthros Especialidades Médicas — Parauapebas.
+
+              #ArthrosMedicina #Ortopedia #DorNoJoelho #SaúdeArticular #QualidadeDeVida #Parauapebas</div>
+          </div>
+          <div class="post-card-footer">
+            <div class="hashtags">#Ortopedia #DorNoJoelho #Parauapebas</div>
+            <button class="btn-ver" onclick="toggleLeg('leg5',this)">Ver tudo</button>
+          </div>
+        </div>
+
+        <!-- POST 7 - DERMATOLOGIA -->
+        <div class="post-card animate animate-delay-4">
+          <div class="post-card-header">
+            <div class="post-card-num">07</div>
+            <div class="post-card-meta">
+              <div class="post-card-date">21 de Junho · Domingo · Educativo</div>
+              <div class="post-card-titulo">Tempo seco em Parauapebas? Sua pele é a primeira a sentir.</div>
+            </div>
+            <span class="tl-badge badge-post" style="flex-shrink:0;">Post</span>
+          </div>
+          <div class="post-card-art">
+            <div class="post-card-art-label">Sugestão de Arte</div>
+            <div class="post-card-art-titulo">Tempo seco em Parauapebas? Sua pele é a primeira a sentir.</div>
+            <div class="post-card-art-sub">Período seco: hidratação certa e avaliação dermatológica protegem sua pele
+            </div>
+            <img src="img/img7.png" alt="Post 7 - Dermatologia" style="width:100%; margin-top:0.75rem; border-radius:10px;">
+          </div>
+          <div class="post-card-body">
+            <div class="post-card-leg-label">Legenda</div>
+            <div class="post-card-legenda" id="leg6">Tempo seco em Parauapebas? Sua pele é a primeira a sentir.
+
+              Com a chegada do período seco e a baixa umidade do ar, a pele perde água com mais facilidade — e os sinais
+              aparecem rápido:
+
+              🌵 Ressecamento e repuxamento
+              🍂 Descamação e aspereza
+              😖 Coceira e irritação
+              💢 Pioras em quem tem dermatite ou alergias
+
+              Cuidar da pele nessa época não é vaidade, é saúde. A pele é a nossa primeira barreira de proteção — e
+              precisa estar íntegra para funcionar bem.
+
+              Algumas atitudes ajudam:
+
+              💧 Hidratar a pele diariamente
+              🚿 Evitar banhos muito quentes e demorados
+              🧴 Usar protetor solar mesmo em dias nublados
+              🥤 Beber bastante água
+
+              E quando o ressecamento persiste ou vem acompanhado de outros sintomas, a avaliação dermatológica faz toda
+              a diferença.
+
+              Na Arthros, a Dermatologia cuida da sua pele o ano inteiro — faça chuva ou faça sol.
+
+              📲 Cuide da sua pele o ano inteiro. Agende sua consulta dermatológica pelo WhatsApp — link na bio.
+
+              Arthros Especialidades Médicas — Parauapebas.
+
+              #ArthrosMedicina #Dermatologia #SaúdeDaPele #TempoSeco #Parauapebas #CuidadoComAPele #Hidratação</div>
+          </div>
+          <div class="post-card-footer">
+            <div class="hashtags">#Dermatologia #TempoSeco #Parauapebas</div>
+            <button class="btn-ver" onclick="toggleLeg('leg6',this)">Ver tudo</button>
+          </div>
+        </div>
+
+        <!-- POST 8 - GINECOLOGIA -->
+        <div class="post-card animate animate-delay-4">
+          <div class="post-card-header">
+            <div class="post-card-num">08</div>
+            <div class="post-card-meta">
+              <div class="post-card-date">24 de Junho · Quarta · Educativo</div>
+              <div class="post-card-titulo">Cuidar de você é prioridade o ano inteiro.</div>
+            </div>
+            <span class="tl-badge badge-post" style="flex-shrink:0;">Post</span>
+          </div>
+          <div class="post-card-art">
+            <div class="post-card-art-label">Sugestão de Arte</div>
+            <div class="post-card-art-titulo">Cuidar de você é prioridade o ano inteiro.</div>
+            <div class="post-card-art-sub">A consulta ginecológica de rotina é a principal aliada na prevenção</div>
+            <img src="img/img8.png" alt="Post 8 - Ginecologia" style="width:100%; margin-top:0.75rem; border-radius:10px;">
+          </div>
+          <div class="post-card-body">
+            <div class="post-card-leg-label">Legenda</div>
+            <div class="post-card-legenda" id="leg7">Cuidar de você é prioridade o ano inteiro.
+
+              A correria do dia a dia faz muitas mulheres adiarem um cuidado essencial: a consulta ginecológica de
+              rotina. Mas é justamente ela a principal aliada na prevenção.
+
+              Por que não deixar para depois?
+
+              🔍 Exames preventivos detectam alterações antes dos sintomas
+              🩺 Acompanhamento em todas as fases (da adolescência à menopausa)
+              🧬 Orientação sobre saúde hormonal e reprodutiva
+              💙 Prevenção do câncer de colo de útero e de mama
+              🤝 Um espaço de escuta para suas dúvidas
+
+              A maioria das condições ginecológicas tem ótimo prognóstico quando descoberta cedo. Prevenir é sempre mais
+              simples do que tratar.
+
+              Na Arthros, a Ginecologia oferece atendimento humanizado e completo para cuidar da sua saúde em cada fase.
+
+              📲 Já fez seu check-up ginecológico este ano? Agende pelo WhatsApp — link na bio.
+
+              Arthros Especialidades Médicas — Parauapebas.
+
+              #ArthrosMedicina #Ginecologia #SaúdeDaMulher #Prevenção #CheckUp #Parauapebas #Autocuidado</div>
+          </div>
+          <div class="post-card-footer">
+            <div class="hashtags">#Ginecologia #SaúdeDaMulher #Parauapebas</div>
+            <button class="btn-ver" onclick="toggleLeg('leg7',this)">Ver tudo</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FIM -->
+  <section id="fim" class="section" style="min-height:40vh;">
+    <div style="position:relative;z-index:1;text-align:center;">
+      <div class="fim-logo animate">Arthros <span>Medicina</span></div>
+      <div class="fim-sub animate animate-delay-1">Linha Editorial · Junho 2026 · Parauapebas, PA</div>
+    </div>
+  </section>
+
+  <script>
+    function toggleLeg(id, btn) {
+      const el = document.getElementById(id);
+      el.classList.toggle('expanded');
+      btn.textContent = el.classList.contains('expanded') ? 'Fechar' : 'Ver tudo';
+    }
+    const sections = document.querySelectorAll('section');
+    const nav = document.getElementById('slideNav');
+    const bar = document.getElementById('progressBar');
+    sections.forEach((s, i) => {
+      const dot = document.createElement('div');
+      dot.className = 'sn-dot';
+      dot.onclick = () => s.scrollIntoView({ behavior: 'smooth' });
+      nav.appendChild(dot);
+    });
+    const dots = document.querySelectorAll('.sn-dot');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const idx = Array.from(sections).indexOf(e.target);
+          dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+        }
+      });
+    }, { threshold: 0.4 });
+    sections.forEach(s => obs.observe(s));
+    window.addEventListener('scroll', () => {
+      const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+      bar.style.width = pct + '%';
+    });
+    const animObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); animObs.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.animate').forEach(el => animObs.observe(el));
+  </script>
+</body>
+
+</html>
