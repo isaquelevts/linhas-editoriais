@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arthros Medicina — Linha Editorial Agosto 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'DM Sans',sans-serif; background:#F4F7FB; color:#0D1B2A; overflow-x:hidden; }
+:root {
+  --primary:#0D47A1; --primary-light:#1976D2; --primary-medium:#1565C0; --primary-pale:#BBDEFB; --primary-soft:#E3F2FD;
+  --secondary:#2E7D32; --secondary-light:#4CAF50;
+  --white:#FFFFFF; --dark:#0D1B2A; --gray:#6B7A8D; --gray-light:#F4F7FB;
+  --reel:#E65100; --reel-bg:#FFF3E0; --reel-border:#FFB74D;
+  --gold:#F0C040; --gold-bg:#FFF8E6;
+}
+
+/* NAV */
+nav { position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(255,255,255,0.94); backdrop-filter:blur(14px); border-bottom:1px solid rgba(13,71,161,0.15); padding:0 2rem; display:flex; align-items:center; justify-content:space-between; height:56px; }
+.nav-logo { font-family:'Playfair Display',serif; font-size:16px; color:var(--primary); font-weight:700; }
+.nav-right { display:flex; align-items:center; gap:1.5rem; }
+.nav-tag { font-size:11px; color:var(--gray); letter-spacing:1px; text-transform:uppercase; }
+.nav-month { font-size:12px; font-weight:500; color:var(--primary); background:var(--primary-soft); padding:4px 12px; border-radius:20px; }
+.progress-bar { position:fixed; top:56px; left:0; height:2px; background:var(--primary); transition:width 0.2s; z-index:99; }
+
+/* HERO */
+.hero { min-height:100vh; background:var(--dark); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:80px 2rem 4rem; position:relative; overflow:hidden; }
+.hero::before { content:''; position:absolute; top:-200px; left:50%; transform:translateX(-50%); width:800px; height:800px; background:radial-gradient(circle,rgba(13,71,161,0.32) 0%,transparent 70%); pointer-events:none; }
+.hero::after { content:''; position:absolute; bottom:-100px; right:-80px; width:400px; height:400px; background:radial-gradient(circle,rgba(240,192,64,0.12) 0%,transparent 70%); pointer-events:none; }
+.hero-tag { display:inline-block; background:rgba(13,71,161,0.25); color:var(--primary-light); font-size:11px; letter-spacing:2.5px; text-transform:uppercase; padding:6px 18px; border-radius:20px; border:1px solid rgba(25,118,210,0.35); margin-bottom:2rem; animation:fadeUp 0.7s ease both; }
+.hero-title { font-family:'Playfair Display',serif; font-size:clamp(42px,8vw,86px); color:var(--white); line-height:1.0; letter-spacing:-2px; margin-bottom:1.25rem; animation:fadeUp 0.7s 0.12s ease both; }
+.hero-title span { color:var(--primary-light); }
+.hero-sub { font-size:15px; color:rgba(255,255,255,0.45); max-width:480px; margin:0 auto 3rem; line-height:1.7; font-weight:300; animation:fadeUp 0.7s 0.24s ease both; }
+.hero-stats { display:inline-flex; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); border-radius:14px; overflow:hidden; animation:fadeUp 0.7s 0.36s ease both; }
+.hero-stat { padding:1.25rem 2rem; text-align:center; border-right:1px solid rgba(255,255,255,0.08); }
+.hero-stat:last-child { border-right:none; }
+.hero-stat-val { font-family:'Playfair Display',serif; font-size:30px; color:var(--white); display:block; }
+.hero-stat-lbl { font-size:10px; color:rgba(255,255,255,0.35); letter-spacing:1.5px; text-transform:uppercase; margin-top:2px; }
+.scroll-hint { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:6px; animation:fadeUp 0.7s 0.5s ease both; }
+.scroll-hint span { font-size:9px; color:rgba(255,255,255,0.25); letter-spacing:2px; text-transform:uppercase; }
+.arrow-down { width:18px; height:18px; border-right:1.5px solid rgba(255,255,255,0.25); border-bottom:1.5px solid rgba(255,255,255,0.25); transform:rotate(45deg); animation:bounce 1.6s infinite; }
+
+/* SECTIONS */
+.section { padding:80px 2rem; }
+.section-inner { max-width:1000px; margin:0 auto; }
+.section-label { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--primary); font-weight:500; margin-bottom:0.6rem; display:flex; align-items:center; gap:10px; }
+.section-label::after { content:''; flex:1; height:1px; background:var(--primary-pale); }
+.section-title { font-family:'Playfair Display',serif; font-size:clamp(28px,4vw,46px); color:var(--dark); line-height:1.1; letter-spacing:-0.5px; margin-bottom:2.5rem; }
+.section-title em { font-style:italic; color:var(--primary); }
+
+/* BADGES */
+.tl-badge { display:inline-flex; align-items:center; gap:5px; font-size:10px; font-weight:500; padding:3px 10px; border-radius:20px; margin-bottom:5px; text-transform:uppercase; letter-spacing:0.5px; }
+.badge-post { background:var(--primary-soft); color:var(--primary); }
+.badge-data { background:#FFF8E6; color:#92600A; border:1px solid #FFE4A0; }
+
+/* CALENDÁRIO VISUAL */
+#overview { background:var(--white); }
+.cal-wrap { display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:start; }
+.cal-legend { display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:1rem; }
+.cal-leg-item { display:flex; align-items:center; gap:6px; font-size:11px; color:var(--gray); }
+.cal-leg-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+.cal-month { background:var(--gray-light); border-radius:16px; padding:1.25rem; }
+.cal-month-title { font-size:13px; font-weight:500; color:var(--dark); text-align:center; margin-bottom:0.75rem; letter-spacing:1px; text-transform:uppercase; }
+.cal-days-header { display:grid; grid-template-columns:repeat(7,1fr); gap:2px; margin-bottom:4px; }
+.cal-days-header span { font-size:10px; color:var(--gray); text-align:center; font-weight:500; padding:4px 0; }
+.cal-days { display:grid; grid-template-columns:repeat(7,1fr); gap:2px; }
+.cal-day { min-height:48px; border-radius:8px; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; padding:5px 3px 3px; font-size:12px; font-weight:400; color:var(--gray); background:transparent; position:relative; }
+.cal-day.empty { opacity:0; pointer-events:none; }
+.cal-day-num { font-size:12px; line-height:1; margin-bottom:3px; }
+.cal-day.has-post .cal-day-num { color:var(--primary); font-weight:500; }
+.cal-day.has-post { background:var(--primary-soft); border-radius:8px; }
+.cal-day.has-data { border:2px solid var(--gold); }
+.cal-pip { width:5px; height:5px; border-radius:50%; margin:1px; flex-shrink:0; }
+.cal-pips { display:flex; flex-wrap:wrap; justify-content:center; gap:1px; }
+.pip-post { background:var(--primary); }
+.cal-day-label { font-size:8px; font-weight:500; text-align:center; line-height:1.2; color:var(--gray); }
+.cal-day.has-post .cal-day-label { color:var(--primary); }
+
+/* TIMELINE */
+.timeline { display:flex; flex-direction:column; gap:0; }
+.tl-item { display:grid; grid-template-columns:90px 1px 1fr; gap:0 1.25rem; align-items:stretch; min-height:56px; }
+.tl-date { text-align:right; padding:0.85rem 0; }
+.tl-day { font-family:'Playfair Display',serif; font-size:20px; color:var(--dark); line-height:1; }
+.tl-weekday { font-size:10px; color:var(--gray); margin-top:2px; }
+.tl-line { background:var(--primary-pale); position:relative; }
+.tl-line::before { content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:10px; height:10px; border-radius:50%; background:var(--primary); border:2px solid var(--white); box-shadow:0 0 0 2px var(--primary-pale); }
+.tl-line.gold-line::before { background:var(--gold); box-shadow:0 0 0 2px var(--gold-bg); }
+.tl-content { padding:0.75rem 0; }
+.tl-titulo { font-size:13px; font-weight:500; color:var(--dark); line-height:1.3; }
+.tl-formato { font-size:11px; color:var(--gray); font-weight:300; margin-top:2px; }
+
+/* POSTS GRID */
+#posts { background:var(--gray-light); }
+.posts-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.25rem; }
+.post-card { background:var(--white); border-radius:16px; overflow:hidden; border:1px solid transparent; transition:all 0.25s; }
+.post-card:hover { border-color:var(--primary-light); transform:translateY(-2px); box-shadow:0 8px 32px rgba(13,71,161,0.1); }
+.post-card.data-card { border-top:3px solid var(--gold); }
+.post-card-img-ph { min-height:190px; display:flex; align-items:center; justify-content:center; text-align:center; color:var(--gray); font-size:12px; line-height:1.6; padding:1.5rem; background:linear-gradient(135deg,var(--primary-soft),var(--gold-bg)); }
+.post-card-header { padding:1.25rem 1.5rem 0; display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; }
+.post-card-num { font-family:'Playfair Display',serif; font-size:36px; color:var(--primary-pale); line-height:1; flex-shrink:0; }
+.post-card-meta { flex:1; }
+.post-card-date { font-size:10px; color:var(--gray); font-weight:400; margin-bottom:3px; text-transform:uppercase; letter-spacing:0.5px; }
+.post-card-titulo { font-size:14px; font-weight:500; color:var(--dark); line-height:1.3; }
+.post-card-sub { font-size:12px; color:var(--gray); font-weight:300; margin-top:4px; line-height:1.4; }
+.post-card-cta { margin:0.85rem 1.5rem 0; background:var(--primary-soft); border-radius:10px; padding:0.7rem 1rem; border-left:3px solid var(--primary); }
+.post-card-cta-label { font-size:9px; color:var(--primary); text-transform:uppercase; letter-spacing:1.5px; font-weight:500; margin-bottom:3px; }
+.post-card-cta-txt { font-size:12.5px; font-weight:400; color:var(--dark); line-height:1.4; }
+.post-card-body { padding:0.85rem 1.5rem 0; }
+.post-card-leg-label { font-size:9px; color:var(--gray); text-transform:uppercase; letter-spacing:1.5px; font-weight:500; margin-bottom:6px; }
+.post-card-legenda { font-size:12.5px; color:#444; line-height:1.7; font-weight:300; background:var(--gray-light); border-radius:10px; padding:1rem; white-space:pre-line; max-height:170px; overflow:hidden; position:relative; transition:max-height 0.4s ease; }
+.post-card-legenda.expanded { max-height:2000px; }
+.post-card-legenda::after { content:''; position:absolute; bottom:0; left:0; right:0; height:48px; background:linear-gradient(transparent,var(--gray-light)); border-radius:0 0 10px 10px; transition:opacity 0.3s; }
+.post-card-legenda.expanded::after { opacity:0; }
+.post-card-footer { padding:0.75rem 1.5rem 1.25rem; display:flex; align-items:center; justify-content:space-between; gap:0.5rem; }
+.hashtags { font-size:11px; color:var(--primary-light); font-weight:300; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; max-width:68%; }
+.btn-ver { font-size:11px; font-weight:500; color:var(--primary); background:var(--primary-soft); border:none; border-radius:20px; padding:5px 14px; cursor:pointer; flex-shrink:0; transition:background 0.2s; }
+.btn-ver:hover { background:var(--primary-pale); }
+
+/* REGRAS */
+#regras { background:var(--white); }
+.regras-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+.regra-card { background:var(--gray-light); border-radius:14px; padding:1.5rem; border:1px solid transparent; transition:all 0.25s; }
+.regra-card:hover { border-color:var(--primary-pale); transform:translateY(-2px); }
+.regra-icon { font-size:24px; margin-bottom:0.75rem; }
+.regra-titulo { font-size:14px; font-weight:500; color:var(--dark); margin-bottom:0.4rem; }
+.regra-texto { font-size:13px; color:var(--gray); line-height:1.55; font-weight:300; }
+
+/* FIM */
+#fim { background:var(--dark); min-height:40vh; display:flex; align-items:center; justify-content:center; text-align:center; position:relative; overflow:hidden; }
+#fim::before { content:''; position:absolute; bottom:-150px; left:50%; transform:translateX(-50%); width:600px; height:600px; background:radial-gradient(circle,rgba(13,71,161,0.28) 0%,transparent 70%); pointer-events:none; }
+.fim-logo { font-family:'Playfair Display',serif; font-size:48px; color:var(--white); letter-spacing:-1.5px; }
+.fim-logo span { color:var(--primary-light); }
+.fim-sub { font-size:11px; color:rgba(255,255,255,0.3); letter-spacing:3px; text-transform:uppercase; margin-top:0.5rem; }
+
+/* SIDE NAV */
+.slide-nav { position:fixed; right:1.25rem; top:50%; transform:translateY(-50%); display:flex; flex-direction:column; gap:8px; z-index:99; }
+.sn-dot { width:6px; height:6px; border-radius:50%; background:rgba(0,0,0,0.15); cursor:pointer; transition:all 0.2s; }
+.sn-dot.active { background:var(--primary); transform:scale(1.5); }
+
+/* ANIMATE */
+.animate { opacity:0; transform:translateY(18px); transition:opacity 0.55s ease, transform 0.55s ease; }
+.animate.visible { opacity:1; transform:translateY(0); }
+.animate-delay-1 { transition-delay:0.08s; }
+.animate-delay-2 { transition-delay:0.16s; }
+.animate-delay-3 { transition-delay:0.24s; }
+.animate-delay-4 { transition-delay:0.32s; }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+@keyframes bounce { 0%,100%{transform:rotate(45deg) translateY(0)} 50%{transform:rotate(45deg) translateY(5px)} }
+
+@media(max-width:768px) {
+  .posts-grid,.regras-grid,.cal-wrap { grid-template-columns:1fr; }
+  .hero-stats { flex-direction:column; }
+  .hero-stat { border-right:none; border-bottom:1px solid rgba(255,255,255,0.08); }
+  nav .nav-right { display:none; }
+  .slide-nav { display:none; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+<div class="slide-nav" id="slideNav"></div>
+
+<nav>
+  <div class="nav-logo">Arthros Medicina</div>
+  <div class="nav-right">
+    <span class="nav-tag">Linha Editorial</span>
+    <span class="nav-month">Agosto 2026</span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero" class="hero">
+  <div style="position:relative;z-index:1;width:100%;">
+    <div class="hero-tag">Linha Editorial · Agosto 2026</div>
+    <h1 class="hero-title">Calendário<br><span>Editorial</span></h1>
+    <p class="hero-sub">8 posts distribuídos por todas as semanas de agosto, com título, subtítulo, CTA, legenda e hashtags prontos para publicar.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="hero-stat-val">8</span><span class="hero-stat-lbl">Posts</span></div>
+      <div class="hero-stat"><span class="hero-stat-val">6</span><span class="hero-stat-lbl">Comemorativos</span></div>
+      <div class="hero-stat"><span class="hero-stat-val">Agosto</span><span class="hero-stat-lbl">Dourado &amp; Lilás</span></div>
+      <div class="hero-stat"><span class="hero-stat-val">5</span><span class="hero-stat-lbl">Semanas</span></div>
+    </div>
+  </div>
+  <div class="scroll-hint"><span>Scroll</span><div class="arrow-down"></div></div>
+</section>
+
+<!-- VISÃO GERAL -->
+<section id="overview" class="section">
+  <div class="section-inner">
+    <div class="section-label animate">01 — Visão Geral</div>
+    <h2 class="section-title animate animate-delay-1">O mês de agosto<br><em>dia a dia</em></h2>
+
+    <div class="cal-wrap">
+
+      <!-- CALENDÁRIO VISUAL -->
+      <div class="animate animate-delay-2">
+        <div class="cal-legend">
+          <div class="cal-leg-item"><div class="cal-leg-dot" style="background:var(--primary);"></div>Post estático</div>
+          <div class="cal-leg-item"><div class="cal-leg-dot" style="background:var(--gold);border:1px solid #C9A000;"></div>Data comemorativa</div>
+        </div>
+        <div class="cal-month">
+          <div class="cal-month-title">Agosto 2026</div>
+          <div class="cal-days-header">
+            <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
+          </div>
+          <div class="cal-days">
+            <!-- Agosto começa no sábado (índice 6) -->
+            <div class="cal-day empty"></div>
+            <div class="cal-day empty"></div>
+            <div class="cal-day empty"></div>
+            <div class="cal-day empty"></div>
+            <div class="cal-day empty"></div>
+            <div class="cal-day empty"></div>
+            <div class="cal-day"><div class="cal-day-num">1</div></div>
+            <!-- Sem 2 -->
+            <div class="cal-day"><div class="cal-day-num">2</div></div>
+            <div class="cal-day"><div class="cal-day-num">3</div></div>
+            <!-- 04 Post #1 Agosto Dourado -->
+            <div class="cal-day has-post has-data"><div class="cal-day-num">4</div><div class="cal-pips"><div class="cal-pip pip-post"></div></div><div class="cal-day-label">Post 1</div></div>
+            <div class="cal-day"><div class="cal-day-num">5</div></div>
+            <div class="cal-day"><div class="cal-day-num">6</div></div>
+            <div class="cal-day"><div class="cal-day-num">7</div></div>
+            <!-- 08 Post #2 Colesterol -->
+            <div class="cal-day has-post has-data"><div class="cal-day-num">8</div><div class="cal-pips"><div class="cal-pip pip-post"></div></div><div class="cal-day-label">Post 2</div></div>
+            <!-- 09 Post #3 Dia dos Pais -->
+            <div class="cal-day has-post has-data"><div class="cal-day-num">9</div><div class="cal-pips"><div class="cal-pip pip-post"></div></div><div class="cal-day-label">Post 3</div></div>
+            <!-- Sem 3 -->
+            <div class="cal-day"><div class="cal-day-num">10</div></div>
+            <div class="cal-day"><div class="cal-day-num">11</div></div>
+            <div class="cal-day"><div class="cal-day-num">12</div></div>
+            <!-- 13 Post #4 Respiratório -->
+            <div class="cal-day has-post"><div class="cal-day-num">13</div><div class="cal-pips"><div class="cal-pip pip-post"></div></div><div class="cal-day-label">Post 4</div></div>
+            <div class="cal-day"><div class="cal-day-num">14</div></div>
+            <div class="cal-day"><div class="cal-day-num">15</div></div>
+            <!-- Sem 4 -->
+            <div class="cal-day"><div class="cal-day-num">16</div></div>
+            <div class="cal-day"><div class="cal-day-num">17</div></div>
+            <!-- 18 Post #5 Pele & Olhos -->
+            <div class="cal-day has-post"><div class="cal-day-num">18</div><div class="cal-pips"><div class="cal-pip pip-post"></div></div><div class="cal-day-label">Post 5</div></div>
+            <div class="cal-day"><div class="cal-day-num">19</div></div>
+            <div class="cal-day"><div class="cal-day-num">20</div></div>
+            <div class="cal-day"><div class="cal-day-num">21</div></div>
+            <!-- 22 Post #6 Agosto Lilás -->
+            <div class="cal-day has-post has-data"><div class="cal-day-num">22</div><div class="cal-pips"><div class="cal-pip pip-post"></div></div><div class="cal-day-label">Post 6</div></div>
+            <!-- Sem 5 -->
+            <div class="cal-day"><div class="cal-day-num">23</div></div>
+            <div class="cal-day"><div class="cal-day-num">24</div></div>
+            <div class="cal-day"><div class="cal-day-num">25</div></div>
+            <div class="cal-day"><div class="cal-day-num">26</div></div>
+            <!-- 27 Post #7 Dia do Psicólogo -->
+            <div class="cal-day has-post has-data"><div class="cal-day-num">27</div><div class="cal-pips"><div class="cal-pip pip-post"></div></div><div class="cal-day-label">Post 7</div></div>
+            <div class="cal-day"><div class="cal-day-num">28</div></div>
+            <!-- 29 Post #8 Combate ao Fumo -->
+            <div class="cal-day has-post has-data"><div class="cal-day-num">29</div><div class="cal-pips"><div class="cal-pip pip-post"></div></div><div class="cal-day-label">Post 8</div></div>
+            <!-- Sem 6 -->
+            <div class="cal-day"><div class="cal-day-num">30</div></div>
+            <div class="cal-day"><div class="cal-day-num">31</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TIMELINE -->
+      <div class="animate animate-delay-3">
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-date"><div class="tl-day">04</div><div class="tl-weekday">Terça</div></div>
+            <div class="tl-line gold-line"></div>
+            <div class="tl-content"><span class="tl-badge badge-data">Post #1 · Agosto Dourado</span><div class="tl-titulo">Amamentar é um ato de amor — e de saúde</div><div class="tl-formato">Arte · Pediatria / Ginecologia</div></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date"><div class="tl-day">08</div><div class="tl-weekday">Sábado</div></div>
+            <div class="tl-line gold-line"></div>
+            <div class="tl-content"><span class="tl-badge badge-data">Post #2 · Combate ao Colesterol</span><div class="tl-titulo">Colesterol alto não dói — e é aí que mora o perigo</div><div class="tl-formato">Arte · Cardiologia</div></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date"><div class="tl-day">09</div><div class="tl-weekday">Domingo</div></div>
+            <div class="tl-line gold-line"></div>
+            <div class="tl-content"><span class="tl-badge badge-data">Post #3 · Dia dos Pais</span><div class="tl-titulo">Feliz Dia dos Pais</div><div class="tl-formato">Arte · Comemorativo</div></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date"><div class="tl-day">13</div><div class="tl-weekday">Quinta</div></div>
+            <div class="tl-line"></div>
+            <div class="tl-content"><span class="tl-badge badge-post">Post #4 · Educativo</span><div class="tl-titulo">Tempo seco em Parauapebas? Seu nariz sente primeiro</div><div class="tl-formato">Arte · Otorrino / Pneumologia</div></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date"><div class="tl-day">18</div><div class="tl-weekday">Terça</div></div>
+            <div class="tl-line"></div>
+            <div class="tl-content"><span class="tl-badge badge-post">Post #5 · Educativo</span><div class="tl-titulo">Pele repuxando e olhos ardendo? É o clima seco</div><div class="tl-formato">Arte · Dermatologia / Oftalmologia</div></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date"><div class="tl-day">22</div><div class="tl-weekday">Sábado</div></div>
+            <div class="tl-line gold-line"></div>
+            <div class="tl-content"><span class="tl-badge badge-data">Post #6 · Agosto Lilás</span><div class="tl-titulo">Cuidar de você também é um direito</div><div class="tl-formato">Arte · Saúde da Mulher</div></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date"><div class="tl-day">27</div><div class="tl-weekday">Quinta</div></div>
+            <div class="tl-line gold-line"></div>
+            <div class="tl-content"><span class="tl-badge badge-data">Post #7 · Dia do Psicólogo</span><div class="tl-titulo">Terapia não é só pra crise — é pra viver melhor</div><div class="tl-formato">Arte · Saúde Mental</div></div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-date"><div class="tl-day">29</div><div class="tl-weekday">Sábado</div></div>
+            <div class="tl-line gold-line"></div>
+            <div class="tl-content"><span class="tl-badge badge-data">Post #8 · Combate ao Fumo</span><div class="tl-titulo">Parar de fumar é possível — e seu corpo agradece rápido</div><div class="tl-formato">Arte · Pneumologia / Cardiologia</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- POSTS -->
+<section id="posts" class="section">
+  <div class="section-inner">
+    <div class="section-label animate">02 — Posts do Mês</div>
+    <h2 class="section-title animate animate-delay-1">8 posts com título, subtítulo, CTA<br><em>legenda e hashtags</em></h2>
+    <div class="posts-grid">
+
+      <!-- POST 1 - AGOSTO DOURADO -->
+      <div class="post-card data-card animate animate-delay-2">
+        <div class="post-card-img-ph">[Arte a ser adicionada]<br>img/post1.png</div>
+        <div class="post-card-header">
+          <div class="post-card-num">01</div>
+          <div class="post-card-meta">
+            <div class="post-card-date">04 de agosto · Terça · Agosto Dourado</div>
+            <div class="post-card-titulo">Amamentar é um ato de amor — e de saúde</div>
+            <div class="post-card-sub">O Agosto Dourado reforça a importância do aleitamento materno. O acompanhamento certo apoia a mãe nessa jornada, do pré-natal aos primeiros meses.</div>
+          </div>
+          <span class="tl-badge badge-data" style="flex-shrink:0;">Data</span>
+        </div>
+        <div class="post-card-cta">
+          <div class="post-card-cta-label">CTA</div>
+          <div class="post-card-cta-txt">📲 Tire suas dúvidas sobre amamentação com quem entende. Agende pelo WhatsApp — link na bio.</div>
+        </div>
+        <div class="post-card-body">
+          <div class="post-card-leg-label">Legenda</div>
+          <div class="post-card-legenda" id="leg1">Amamentar é um ato de amor — e de saúde.
+
+O Agosto Dourado é o mês de conscientização sobre a importância do aleitamento materno. O leite materno é o primeiro e mais completo alimento do bebê: protege contra infecções, fortalece o vínculo e também traz benefícios para a mãe.
+
+Mas amamentar nem sempre é fácil, e pedir ajuda faz parte do processo.
+
+🤱 Apoio no pré-natal e no pós-parto
+💛 Orientação sobre pega e posição
+🩺 Acompanhamento pediátrico do bebê
+👩‍⚕️ Cuidado com a saúde da mãe
+
+Nenhuma mãe precisa passar por isso sozinha.
+
+📲 Agende sua consulta agora!
+
+Arthros Especialidades Médicas — Parauapebas.
+📲 Agende pelo WhatsApp: link na bio.
+
+#ArthrosMedicina #AgostoDourado #Amamentacao #SaudeMaterna #SaudeEmParauapebas</div>
+        </div>
+        <div class="post-card-footer">
+          <div class="hashtags">#AgostoDourado #Amamentação #Parauapebas</div>
+          <button class="btn-ver" onclick="toggleLeg('leg1',this)">Ver tudo</button>
+        </div>
+      </div>
+
+      <!-- POST 2 - COMBATE AO COLESTEROL -->
+      <div class="post-card data-card animate animate-delay-2">
+        <div class="post-card-img-ph">[Arte a ser adicionada]<br>img/post2.png</div>
+        <div class="post-card-header">
+          <div class="post-card-num">02</div>
+          <div class="post-card-meta">
+            <div class="post-card-date">08 de agosto · Sábado · Combate ao Colesterol</div>
+            <div class="post-card-titulo">Colesterol alto não dói — e é aí que mora o perigo</div>
+            <div class="post-card-sub">No Dia Nacional de Combate ao Colesterol, lembre: o excesso é silencioso e aumenta o risco de infarto e AVC. Um exame simples já mostra como você está.</div>
+          </div>
+          <span class="tl-badge badge-data" style="flex-shrink:0;">Data</span>
+        </div>
+        <div class="post-card-cta">
+          <div class="post-card-cta-label">CTA</div>
+          <div class="post-card-cta-txt">📲 Cuide do seu coração antes que ele avise. Agende seus exames pelo WhatsApp — link na bio.</div>
+        </div>
+        <div class="post-card-body">
+          <div class="post-card-leg-label">Legenda</div>
+          <div class="post-card-legenda" id="leg2">Colesterol alto não dói — e é aí que mora o perigo.
+
+O colesterol elevado é um dos maiores fatores de risco para infarto e AVC, mas raramente apresenta sintomas. Muita gente só descobre quando o problema já está avançado.
+
+A boa notícia: um exame de sangue simples mostra como estão seus níveis, e a prevenção está ao seu alcance.
+
+❤️ Avaliação cardiológica
+🩸 Exames de colesterol e triglicerídeos
+🥗 Orientação alimentar e de hábitos
+🏃 Estratégias de prevenção
+
+Prevenir é sempre mais fácil do que remediar.
+
+📲 Agende sua consulta agora!
+
+Arthros Especialidades Médicas — Parauapebas.
+📲 Agende pelo WhatsApp: link na bio.
+
+#ArthrosMedicina #CombateAoColesterol #Cardiologia #SaudeDoCoracao #SaudeEmParauapebas</div>
+        </div>
+        <div class="post-card-footer">
+          <div class="hashtags">#Cardiologia #Colesterol #Parauapebas</div>
+          <button class="btn-ver" onclick="toggleLeg('leg2',this)">Ver tudo</button>
+        </div>
+      </div>
+
+      <!-- POST 3 - DIA DOS PAIS -->
+      <div class="post-card data-card animate animate-delay-3">
+        <div class="post-card-img-ph">[Arte a ser adicionada]<br>img/post3.png</div>
+        <div class="post-card-header">
+          <div class="post-card-num">03</div>
+          <div class="post-card-meta">
+            <div class="post-card-date">09 de agosto · Domingo · Dia dos Pais</div>
+            <div class="post-card-titulo">Feliz Dia dos Pais</div>
+            <div class="post-card-sub">Pai é aquele que protege, ensina e vibra com cada conquista. Hoje é dia de celebrar todas as figuras paternas que fazem a diferença.</div>
+          </div>
+          <span class="tl-badge badge-data" style="flex-shrink:0;">Data</span>
+        </div>
+        <div class="post-card-body">
+          <div class="post-card-leg-label">Legenda</div>
+          <div class="post-card-legenda" id="leg3">Feliz Dia dos Pais! 👨‍👧‍👦
+
+Pai é aquele que carrega no colo e no coração. Que ensina a andar de bicicleta, que dá bronca com amor e que vibra com cada conquista, por menor que seja.
+
+Uns são de poucas palavras, outros contam mil histórias. Mas todos têm em comum aquele jeito de proteger que faz a gente se sentir seguro.
+
+Hoje é dia de celebrar os pais, avôs, padrastos e todas as figuras paternas que fazem a diferença todos os dias.
+
+Com carinho da equipe Arthros. ❤️
+
+Arthros Especialidades Médicas — Parauapebas.
+
+#ArthrosMedicina #DiaDosPais #SaudeEmParauapebas</div>
+        </div>
+        <div class="post-card-footer">
+          <div class="hashtags">#DiaDosPais #ArthrosMedicina #Parauapebas</div>
+          <button class="btn-ver" onclick="toggleLeg('leg3',this)">Ver tudo</button>
+        </div>
+      </div>
+
+      <!-- POST 4 - RESPIRATÓRIO (ESTIAGEM) -->
+      <div class="post-card animate animate-delay-3">
+        <div class="post-card-img-ph">[Arte a ser adicionada]<br>img/post4.png</div>
+        <div class="post-card-header">
+          <div class="post-card-num">04</div>
+          <div class="post-card-meta">
+            <div class="post-card-date">13 de agosto · Quinta · Educativo</div>
+            <div class="post-card-titulo">Tempo seco em Parauapebas? Seu nariz sente primeiro</div>
+            <div class="post-card-sub">No auge da estiagem, o ar seco e a poeira disparam casos de rinite, sinusite e tosse. Cuidados simples e avaliação evitam que a crise se instale.</div>
+          </div>
+          <span class="tl-badge badge-post" style="flex-shrink:0;">Otorrino</span>
+        </div>
+        <div class="post-card-cta">
+          <div class="post-card-cta-label">CTA</div>
+          <div class="post-card-cta-txt">📲 Não deixe a crise respiratória atrapalhar sua rotina. Agende sua consulta pelo WhatsApp — link na bio.</div>
+        </div>
+        <div class="post-card-body">
+          <div class="post-card-leg-label">Legenda</div>
+          <div class="post-card-legenda" id="leg4">Tempo seco em Parauapebas? Seu nariz sente primeiro.
+
+No auge do período seco na nossa região, a umidade do ar despenca e a poeira aumenta. Essa combinação irrita as vias respiratórias e dispara casos de rinite, sinusite, tosse seca e alergias.
+
+Alguns cuidados ajudam a atravessar a estiagem com mais conforto:
+
+💧 Beba bastante água ao longo do dia
+🌬️ Use soro fisiológico para lavar o nariz
+🏠 Mantenha os ambientes limpos e arejados
+🩺 Procure avaliação se os sintomas persistirem
+
+Respirar bem faz toda a diferença no seu dia.
+
+📲 Agende sua consulta agora!
+
+Arthros Especialidades Médicas — Parauapebas.
+📲 Agende pelo WhatsApp: link na bio.
+
+#ArthrosMedicina #SaudeRespiratoria #TempoSeco #Rinite #SaudeEmParauapebas</div>
+        </div>
+        <div class="post-card-footer">
+          <div class="hashtags">#Respiratório #TempoSeco #Parauapebas</div>
+          <button class="btn-ver" onclick="toggleLeg('leg4',this)">Ver tudo</button>
+        </div>
+      </div>
+
+      <!-- POST 5 - PELE & OLHOS (CLIMA SECO) -->
+      <div class="post-card animate animate-delay-4">
+        <div class="post-card-img-ph">[Arte a ser adicionada]<br>img/post5.png</div>
+        <div class="post-card-header">
+          <div class="post-card-num">05</div>
+          <div class="post-card-meta">
+            <div class="post-card-date">18 de agosto · Terça · Educativo</div>
+            <div class="post-card-titulo">Pele repuxando e olhos ardendo? É o clima seco</div>
+            <div class="post-card-sub">A baixa umidade da estiagem resseca pele e olhos e pode causar coceira, vermelhidão e desconforto. Hidratação e avaliação mantêm você protegido.</div>
+          </div>
+          <span class="tl-badge badge-post" style="flex-shrink:0;">Pele &amp; Olhos</span>
+        </div>
+        <div class="post-card-cta">
+          <div class="post-card-cta-label">CTA</div>
+          <div class="post-card-cta-txt">📲 Cuide da sua pele e dos seus olhos neste tempo seco. Agende pelo WhatsApp — link na bio.</div>
+        </div>
+        <div class="post-card-body">
+          <div class="post-card-leg-label">Legenda</div>
+          <div class="post-card-legenda" id="leg5">Pele repuxando e olhos ardendo? É o clima seco.
+
+Durante a estiagem em Parauapebas, o ar seco rouba a hidratação natural da pele e dos olhos. O resultado aparece rápido: pele áspera e com coceira, lábios rachados, olhos vermelhos e sensação de areia.
+
+Cuidados simples fazem uma grande diferença:
+
+🧴 Hidrate a pele todos os dias
+💧 Use colírio lubrificante se sentir os olhos secos
+🚰 Beba água com frequência
+🕶️ Proteja-se do sol e do vento
+
+E se o desconforto persistir, a avaliação especializada indica o melhor cuidado.
+
+📲 Agende sua consulta agora!
+
+Arthros Especialidades Médicas — Parauapebas.
+📲 Agende pelo WhatsApp: link na bio.
+
+#ArthrosMedicina #SaudeDaPele #OlhoSeco #TempoSeco #SaudeEmParauapebas</div>
+        </div>
+        <div class="post-card-footer">
+          <div class="hashtags">#Dermatologia #Oftalmologia #Parauapebas</div>
+          <button class="btn-ver" onclick="toggleLeg('leg5',this)">Ver tudo</button>
+        </div>
+      </div>
+
+      <!-- POST 6 - AGOSTO LILÁS -->
+      <div class="post-card data-card animate animate-delay-4">
+        <div class="post-card-img-ph">[Arte a ser adicionada]<br>img/post6.png</div>
+        <div class="post-card-header">
+          <div class="post-card-num">06</div>
+          <div class="post-card-meta">
+            <div class="post-card-date">22 de agosto · Sábado · Agosto Lilás</div>
+            <div class="post-card-titulo">Agosto Lilás: cuidar de você também é um direito</div>
+            <div class="post-card-sub">O Agosto Lilás combate a violência contra a mulher e reforça a rede de apoio. Saúde física e emocional caminham juntas — e você não está sozinha.</div>
+          </div>
+          <span class="tl-badge badge-data" style="flex-shrink:0;">Data</span>
+        </div>
+        <div class="post-card-cta">
+          <div class="post-card-cta-label">CTA</div>
+          <div class="post-card-cta-txt">📲 Sua saúde importa. Agende seu acompanhamento pelo WhatsApp — link na bio.</div>
+        </div>
+        <div class="post-card-body">
+          <div class="post-card-leg-label">Legenda</div>
+          <div class="post-card-legenda" id="leg6">Agosto Lilás: cuidar de você também é um direito.
+
+O Agosto Lilás marca a luta contra a violência à mulher e a conscientização sobre a Lei Maria da Penha. Mais do que uma data, é um lembrete: toda mulher merece respeito, segurança e cuidado.
+
+E cuidar de si é parte disso. A saúde da mulher vai além do corpo: envolve o emocional, o acolhimento e o apoio de uma rede de confiança.
+
+💜 Acompanhamento ginecológico
+🧠 Cuidado com a saúde mental
+🤝 Escuta acolhedora e sigilosa
+🩺 Prevenção e bem-estar integral
+
+Você merece se cuidar. E não precisa fazer isso sozinha.
+
+📲 Agende sua consulta agora!
+
+Arthros Especialidades Médicas — Parauapebas.
+📲 Agende pelo WhatsApp: link na bio.
+
+#ArthrosMedicina #AgostoLilas #SaudeDaMulher #CuidarDeSi #SaudeEmParauapebas</div>
+        </div>
+        <div class="post-card-footer">
+          <div class="hashtags">#AgostoLilás #SaúdeDaMulher #Parauapebas</div>
+          <button class="btn-ver" onclick="toggleLeg('leg6',this)">Ver tudo</button>
+        </div>
+      </div>
+
+      <!-- POST 7 - DIA DO PSICÓLOGO -->
+      <div class="post-card data-card animate animate-delay-4">
+        <div class="post-card-img-ph">[Arte a ser adicionada]<br>img/post7.png</div>
+        <div class="post-card-header">
+          <div class="post-card-num">07</div>
+          <div class="post-card-meta">
+            <div class="post-card-date">27 de agosto · Quinta · Dia do Psicólogo</div>
+            <div class="post-card-titulo">Terapia não é só pra crise — é pra viver melhor</div>
+            <div class="post-card-sub">No Dia do Psicólogo, lembramos que cuidar da mente é cuidado, não fraqueza. O acompanhamento ajuda a lidar com ansiedade, rotina e o que pesa por dentro.</div>
+          </div>
+          <span class="tl-badge badge-data" style="flex-shrink:0;">Data</span>
+        </div>
+        <div class="post-card-cta">
+          <div class="post-card-cta-label">CTA</div>
+          <div class="post-card-cta-txt">📲 Dê atenção à sua saúde mental. Agende sua consulta pelo WhatsApp — link na bio.</div>
+        </div>
+        <div class="post-card-body">
+          <div class="post-card-leg-label">Legenda</div>
+          <div class="post-card-legenda" id="leg7">Terapia não é só pra crise — é pra viver melhor.
+
+Hoje é Dia do Psicólogo, uma boa oportunidade para desfazer um mito: você não precisa estar no fundo do poço para buscar ajuda. A terapia é um espaço de autoconhecimento, equilíbrio e cuidado com quem você é.
+
+Ansiedade, estresse, luto, decisões difíceis ou só a vontade de se entender melhor: tudo cabe no consultório.
+
+🧠 Acompanhamento psicológico
+💙 Manejo de ansiedade e estresse
+🌱 Autoconhecimento e qualidade de vida
+🤝 Escuta profissional e sem julgamentos
+
+Cuidar da mente é cuidar da sua vida inteira.
+
+📲 Agende sua consulta agora!
+
+Arthros Especialidades Médicas — Parauapebas.
+📲 Agende pelo WhatsApp: link na bio.
+
+#ArthrosMedicina #DiaDoPsicologo #SaudeMental #Terapia #SaudeEmParauapebas</div>
+        </div>
+        <div class="post-card-footer">
+          <div class="hashtags">#SaúdeMental #DiaDoPsicólogo #Parauapebas</div>
+          <button class="btn-ver" onclick="toggleLeg('leg7',this)">Ver tudo</button>
+        </div>
+      </div>
+
+      <!-- POST 8 - COMBATE AO FUMO -->
+      <div class="post-card data-card animate animate-delay-4">
+        <div class="post-card-img-ph">[Arte a ser adicionada]<br>img/post8.png</div>
+        <div class="post-card-header">
+          <div class="post-card-num">08</div>
+          <div class="post-card-meta">
+            <div class="post-card-date">29 de agosto · Sábado · Combate ao Fumo</div>
+            <div class="post-card-titulo">Parar de fumar é possível — e seu corpo agradece rápido</div>
+            <div class="post-card-sub">No Dia Nacional de Combate ao Fumo, reforçamos: largar o cigarro reduz o risco de infarto, AVC e câncer. E os benefícios começam em poucas horas.</div>
+          </div>
+          <span class="tl-badge badge-data" style="flex-shrink:0;">Data</span>
+        </div>
+        <div class="post-card-cta">
+          <div class="post-card-cta-label">CTA</div>
+          <div class="post-card-cta-txt">📲 Quer parar de fumar? A gente te ajuda nesse passo. Agende pelo WhatsApp — link na bio.</div>
+        </div>
+        <div class="post-card-body">
+          <div class="post-card-leg-label">Legenda</div>
+          <div class="post-card-legenda" id="leg8">Parar de fumar é possível — e seu corpo agradece rápido.
+
+No Dia Nacional de Combate ao Fumo, vale reforçar: o cigarro é a principal causa evitável de doenças e mortes no mundo. Mas parar traz benefícios quase imediatos.
+
+Em poucas horas, o corpo já começa a se recuperar. Em poucos meses, a respiração e a circulação melhoram. Com o tempo, o risco de infarto, AVC e câncer cai de forma significativa.
+
+🚭 Apoio para parar de fumar
+❤️ Avaliação cardiovascular
+🫁 Cuidado com a saúde respiratória
+🩺 Acompanhamento personalizado
+
+Nunca é tarde para dar esse passo. E você não precisa dar sozinho.
+
+📲 Agende sua consulta agora!
+
+Arthros Especialidades Médicas — Parauapebas.
+📲 Agende pelo WhatsApp: link na bio.
+
+#ArthrosMedicina #CombateAoFumo #PararDeFumar #SaudeRespiratoria #SaudeEmParauapebas</div>
+        </div>
+        <div class="post-card-footer">
+          <div class="hashtags">#CombateAoFumo #Pneumologia #Parauapebas</div>
+          <button class="btn-ver" onclick="toggleLeg('leg8',this)">Ver tudo</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CAMPANHAS -->
+<section id="regras" class="section">
+  <div class="section-inner">
+    <div class="section-label animate">03 — Campanhas do Mês</div>
+    <h2 class="section-title animate animate-delay-1">Agosto Dourado + Lilás<br><em>Datas e campanhas</em></h2>
+    <div class="regras-grid">
+      <div class="regra-card animate animate-delay-2"><div class="regra-icon">💛</div><div class="regra-titulo">Agosto Dourado</div><div class="regra-texto">Campanha de incentivo ao aleitamento materno. Foco em apoio à mãe, pré-natal e pediatria. Post #1 (04/08) dedicado a esta data.</div></div>
+      <div class="regra-card animate animate-delay-2"><div class="regra-icon">👨‍👧‍👦</div><div class="regra-titulo">Dia dos Pais (09/08)</div><div class="regra-texto">Post afetivo e celebratório em homenagem às figuras paternas. Tom emocional e acolhedor, sem conteúdo institucional. Post #3.</div></div>
+      <div class="regra-card animate animate-delay-2"><div class="regra-icon">💜</div><div class="regra-titulo">Agosto Lilás</div><div class="regra-texto">Enfrentamento à violência contra a mulher e Lei Maria da Penha. Foco na saúde e no acolhimento da mulher. Post #6 (22/08).</div></div>
+      <div class="regra-card animate animate-delay-3"><div class="regra-icon">🌵</div><div class="regra-titulo">Estiagem em Parauapebas</div><div class="regra-texto">Auge do período seco: ar seco e poeira. Ganchos locais de saúde respiratória, pele e olhos. Posts #4 (13/08) e #5 (18/08).</div></div>
+      <div class="regra-card animate animate-delay-3"><div class="regra-icon">🩺</div><div class="regra-titulo">Datas de saúde</div><div class="regra-texto">Combate ao Colesterol (08/08), Dia do Psicólogo (27/08) e Combate ao Fumo (29/08). Posts #2, #7 e #8.</div></div>
+      <div class="regra-card animate animate-delay-3"><div class="regra-icon">📅</div><div class="regra-titulo">Volume e distribuição</div><div class="regra-texto">8 posts em agosto, ao menos 1 por semana. Especialidades: Pediatria/Ginecologia, Cardiologia, Otorrino/Pneumo, Dermato/Oftalmo, Saúde da Mulher e Saúde Mental.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FIM -->
+<section id="fim" class="section" style="min-height:40vh;">
+  <div style="position:relative;z-index:1;text-align:center;">
+    <div class="fim-logo animate">Arthros <span>Medicina</span></div>
+    <div class="fim-sub animate animate-delay-1">Linha Editorial · Agosto 2026 · Parauapebas, PA</div>
+  </div>
+</section>
+
+<script>
+function toggleLeg(id, btn) {
+  const el = document.getElementById(id);
+  el.classList.toggle('expanded');
+  btn.textContent = el.classList.contains('expanded') ? 'Fechar' : 'Ver tudo';
+}
+const sections = document.querySelectorAll('section');
+const nav = document.getElementById('slideNav');
+const bar = document.getElementById('progressBar');
+sections.forEach((s,i) => {
+  const dot = document.createElement('div');
+  dot.className = 'sn-dot';
+  dot.onclick = () => s.scrollIntoView({behavior:'smooth'});
+  nav.appendChild(dot);
+});
+const dots = document.querySelectorAll('.sn-dot');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const idx = Array.from(sections).indexOf(e.target);
+      dots.forEach((d,i) => d.classList.toggle('active', i === idx));
+    }
+  });
+}, {threshold:0.4});
+sections.forEach(s => obs.observe(s));
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+  bar.style.width = pct + '%';
+});
+const animObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); animObs.unobserve(e.target); }
+  });
+}, {threshold:0.12});
+document.querySelectorAll('.animate').forEach(el => animObs.observe(el));
+</script>
+</body>
+</html>
