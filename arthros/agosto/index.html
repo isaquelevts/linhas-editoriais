@@ -723,7 +723,7 @@ function toggleLeg(id, btn) {
 }
 function copyLeg(id, btn) {
   const el = document.getElementById(id);
-  const text = el.innerText;
+  const text = el.textContent;
   const done = () => {
     const original = btn.textContent;
     btn.textContent = 'Copiado!';
