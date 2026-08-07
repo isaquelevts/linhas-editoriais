@@ -114,9 +114,12 @@ nav { position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(255,2
 .post-card-legenda::after { content:''; position:absolute; bottom:0; left:0; right:0; height:48px; background:linear-gradient(transparent,var(--gray-light)); border-radius:0 0 10px 10px; transition:opacity 0.3s; }
 .post-card-legenda.expanded::after { opacity:0; }
 .post-card-footer { padding:0.75rem 1.5rem 1.25rem; display:flex; align-items:center; justify-content:space-between; gap:0.5rem; }
-.hashtags { font-size:11px; color:var(--primary-light); font-weight:300; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; max-width:68%; }
+.hashtags { font-size:11px; color:var(--primary-light); font-weight:300; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; max-width:48%; }
 .btn-ver { font-size:11px; font-weight:500; color:var(--primary); background:var(--primary-soft); border:none; border-radius:20px; padding:5px 14px; cursor:pointer; flex-shrink:0; transition:background 0.2s; }
 .btn-ver:hover { background:var(--primary-pale); }
+.btn-copy { font-size:11px; font-weight:500; color:var(--gray); background:transparent; border:1px solid var(--gray-light); border-radius:20px; padding:5px 14px; cursor:pointer; flex-shrink:0; transition:all 0.2s; }
+.btn-copy:hover { background:var(--gray-light); }
+.btn-copy.copied { color:#1A7A3C; border-color:#B7EAC7; }
 
 /* REGRAS */
 #regras { background:var(--white); }
@@ -362,6 +365,7 @@ Unidade 2: R. Araguaia, n° 20 - Rio Verde, Parauapebas - PA
         </div>
         <div class="post-card-footer">
           <div class="hashtags">#AgostoDourado #Amamentação #Parauapebas</div>
+          <button class="btn-copy" onclick="copyLeg('leg1',this)">Copiar</button>
           <button class="btn-ver" onclick="toggleLeg('leg1',this)">Ver tudo</button>
         </div>
       </div>
@@ -408,6 +412,7 @@ Unidade 2: R. Araguaia, n° 20 - Rio Verde, Parauapebas - PA
         </div>
         <div class="post-card-footer">
           <div class="hashtags">#Cardiologia #Colesterol #Parauapebas</div>
+          <button class="btn-copy" onclick="copyLeg('leg2',this)">Copiar</button>
           <button class="btn-ver" onclick="toggleLeg('leg2',this)">Ver tudo</button>
         </div>
       </div>
@@ -441,6 +446,7 @@ Unidade 2: R. Araguaia, n° 20 - Rio Verde, Parauapebas - PA
         </div>
         <div class="post-card-footer">
           <div class="hashtags">#DiaDosPais #ArthrosMedicina #Parauapebas</div>
+          <button class="btn-copy" onclick="copyLeg('leg3',this)">Copiar</button>
           <button class="btn-ver" onclick="toggleLeg('leg3',this)">Ver tudo</button>
         </div>
       </div>
@@ -487,6 +493,7 @@ Unidade 2: R. Araguaia, n° 20 - Rio Verde, Parauapebas - PA
         </div>
         <div class="post-card-footer">
           <div class="hashtags">#Respiratório #TempoSeco #Parauapebas</div>
+          <button class="btn-copy" onclick="copyLeg('leg4',this)">Copiar</button>
           <button class="btn-ver" onclick="toggleLeg('leg4',this)">Ver tudo</button>
         </div>
       </div>
@@ -528,6 +535,7 @@ Unidade 2: R. Araguaia, n° 20 - Rio Verde, Parauapebas - PA
         </div>
         <div class="post-card-footer">
           <div class="hashtags">#AdesãoDoPará #Feriado #Parauapebas</div>
+          <button class="btn-copy" onclick="copyLeg('leg5',this)">Copiar</button>
           <button class="btn-ver" onclick="toggleLeg('leg5',this)">Ver tudo</button>
         </div>
       </div>
@@ -574,6 +582,7 @@ Unidade 2: R. Araguaia, n° 20 - Rio Verde, Parauapebas - PA
         </div>
         <div class="post-card-footer">
           <div class="hashtags">#AgostoLilás #SaúdeDaMulher #Parauapebas</div>
+          <button class="btn-copy" onclick="copyLeg('leg6',this)">Copiar</button>
           <button class="btn-ver" onclick="toggleLeg('leg6',this)">Ver tudo</button>
         </div>
       </div>
@@ -620,6 +629,7 @@ Unidade 2: R. Araguaia, n° 20 - Rio Verde, Parauapebas - PA
         </div>
         <div class="post-card-footer">
           <div class="hashtags">#Checkup #Prevenção #Parauapebas</div>
+          <button class="btn-copy" onclick="copyLeg('leg7',this)">Copiar</button>
           <button class="btn-ver" onclick="toggleLeg('leg7',this)">Ver tudo</button>
         </div>
       </div>
@@ -672,6 +682,7 @@ Unidade 2: R. Araguaia, n° 20 - Rio Verde, Parauapebas - PA
         </div>
         <div class="post-card-footer">
           <div class="hashtags">#Enxaqueca #Neurologia #Parauapebas</div>
+          <button class="btn-copy" onclick="copyLeg('leg8',this)">Copiar</button>
           <button class="btn-ver" onclick="toggleLeg('leg8',this)">Ver tudo</button>
         </div>
       </div>
@@ -709,6 +720,31 @@ function toggleLeg(id, btn) {
   const el = document.getElementById(id);
   el.classList.toggle('expanded');
   btn.textContent = el.classList.contains('expanded') ? 'Fechar' : 'Ver tudo';
+}
+function copyLeg(id, btn) {
+  const el = document.getElementById(id);
+  const text = el.innerText;
+  const done = () => {
+    const original = btn.textContent;
+    btn.textContent = 'Copiado!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1500);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+  } else {
+    fallbackCopy(text, done);
+  }
+}
+function fallbackCopy(text, done) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand('copy'); done(); } catch (e) {}
+  document.body.removeChild(ta);
 }
 const sections = document.querySelectorAll('section');
 const nav = document.getElementById('slideNav');
